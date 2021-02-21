@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use DB;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +15,89 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+
+    	//fabricando usuários, posts e comentários
+        \App\Models\User::factory(10)->create();
+        \App\Models\Post::factory(50)->create();
+        \App\Models\Comment::factory(200)->create();
+
+        //associando likes aos posts
+        foreach (\App\Models\Post::all() as $post) {
+        	
+        	$post_id = $post->id;
+        	$users = \App\Models\User::take(5)
+        		->inRandomOrder()
+        		->get();
+        	foreach ($users as $user) {
+        		DB::table('likes')->insert([
+        			'user' => $user->id,
+        			'post' => $post_id,
+        			'created_at' => \Carbon\Carbon::now(),
+        			'updated_at' => \Carbon\Carbon::now(),
+        		]);
+        	}
+        }
+
+
+        \App\Models\Book::factory(50)->create();
+
+        foreach(\App\Models\User::all() as $user) {
+        	
+        	$book = \App\Models\Book::inRandomOrder()->first();
+
+        	$has = 0;
+        	$reading = 0;
+        	$read = 0;
+        	$left = 0;
+        	$toRead = 0;
+        	$rating = 0;
+        	//se tem o livro
+        	if(array_rand(range(0,1))) {
+        		//Está lendo, leu ou abandonou
+        		$has = 1;
+        		$reading = 0;
+        		$read = 0;
+        		$left = 0;
+        		switch (array_rand(range(1,3)) ) {
+        			case 1:
+        				$reading = 1;
+        				break;
+        			case 2:
+        				$read = 1;
+        				break;
+        			case 3:
+        				$left = 1;
+        				break;        			
+        		}
+
+        		$rating = array_rand(range(0,10));
+
+        	} else {
+        		$toRead = 1;
+        	}
+
+        	DB::table('users_books')->insert([
+        		'has' => $has,
+        		'reading' => $reading,
+        		'read' => $read,
+        		'left' => $left,
+        		'toRead' => $toRead,
+        		'user' => $user->id,
+        		'book' => $book->id,
+        		'rating' => $rating,
+        	]);
+        }
+
+        //associando livros a posts
+        foreach (\App\Models\Post::all() as $post) {
+        	
+        	DB::table('posts_books')->insert([
+        		'post' => $post->id,
+        		'book' => \App\Models\Book::inRandomOrder()->first()->id,
+        		'created_at' => \Carbon\Carbon::now(),
+        		'updated_at' => \Carbon\Carbon::now(),
+        	]);
+        }
+
     }
 }
