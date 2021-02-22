@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TemplatesController;
+use App\Http\Controllers\PerfilController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteServiceProvider within a group whichPl
 | contains the "web" middleware group. Now create something great!
 |
 */
@@ -17,7 +17,7 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('/home', [TemplatesController::class, 'home']);
+Route::get('/home', [PerfilController::class, 'home'])->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
