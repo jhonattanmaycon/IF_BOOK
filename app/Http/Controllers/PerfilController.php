@@ -8,8 +8,8 @@ use Auth;
 
 class PerfilController extends Controller
 {
-    public function home() {
+    public function perfil() {
     	 $dados = Auth::user();
-    	return view('templates.home', ['user'=>$dados]);
+    	return view('templates.perfil', ['user'=>$dados]);
     }
 }
