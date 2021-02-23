@@ -1,7 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\{
+
+	PerfilController,
+	FeedController,
+	ExploreController,
+	LibraryController,
+	MatchController,
+	HomeController,
+};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,19 +22,19 @@ use App\Http\Controllers\PerfilController;
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('/home');
 });
 // Rota para pessoas nao logadas
-Route::get('/home', [PerfilController::class, 'home'])->middleware(['auth']);
+Route::get('/home', [HomeController::class, 'home']);
 // Rota para controlar feed
-Route::get('/feed'),[FeedController::class,] 'feed'])->middleware(['auth']);
+Route::get('/feed', [FeedController::class, 'feed'])->middleware(['auth'])->name('feed');
 //Rota para controle do explorar
-Route::get('/explore'),[ExploreController::class,] 'explore'])->middleware(['auth']);
+Route::get('/explore',[ExploreController::class, 'explore'])->middleware(['auth'])->name('explore');
 // Rota para controle da biblioteca
-Route::get('/library'),[LibraryController::class,] 'library'])->middleware(['auth']
-);
+Route::get('/library',[LibraryController::class,'library'])->middleware(['auth']
+)->name('library');
 // Rota para o controle do match
-Route::get('/match'),[MatchController::class,] 'match'])->middleware(['auth']);
+Route::get('/match',[MatchController::class,'match'])->middleware(['auth'])->name('match');
 // Rota para o controle de pessoas logadas
-Route::get('/perfil'),[PerfilController::class,] 'perfil'])->middleware(['auth']);
+Route::get('/perfil',[PerfilController::class,'perfil'])->middleware(['auth'])->name('perfil');
 require __DIR__.'/auth.php';
