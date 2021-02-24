@@ -2,7 +2,6 @@
 
 
 @section('menu')
-	@section('username',  '{{$user->name }}')
 @endsection
 
 

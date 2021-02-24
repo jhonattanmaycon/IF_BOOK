@@ -46,7 +46,7 @@
       <div class="profile">
         <a href="#"><img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
           </a>
-        <h1 class="text-light"><a href="index.html">@yield('username')</a></h1>
+        <h1 class="text-light"><a href="index.html">@yield('username', $user->name)</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -71,5 +71,17 @@
     </div>
   </header><!-- End Header -->
 
- 
+   <!-- Vendor JS Files -->
+  <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{asset('assets/vendor/purecounter/purecounter.js')}}"></script>
+  <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/typed.js/typed.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/waypoints/noframework.waypoints.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{asset('assets/js/main.js')}}"></script>
 </body>

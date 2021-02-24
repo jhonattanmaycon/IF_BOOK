@@ -2,5 +2,5 @@
 
 
 @section('menu')
-
+	@section('username' ,'Usuário não logado')
 @endsection
