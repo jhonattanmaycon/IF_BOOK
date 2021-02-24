@@ -11,7 +11,7 @@
               <div class="d-flex flex-column align-items-center text-center">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                 <div class="mt-3">
-                  <h4> XXX </h4>
+                  <h4> {{ $user->name }} </h4>
                   <p class="text-secondary mb-1">Cidade</p>
                   <p class="text-muted font-size-sm">Idade</p>
 
@@ -35,7 +35,7 @@
               <h6 class="d-flex align-items-center mb-3">Gênero Literário</h6>
               <small>Romance</small>
               <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <small>Política</small>
               <div class="progress mb-3" style="height: 5px">

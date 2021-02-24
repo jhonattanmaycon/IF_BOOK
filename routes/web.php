@@ -25,7 +25,7 @@ Route::get('/', function() {
     return redirect()->route('perfil.home');
 })->middleware(['auth']);
 
-Route::get('/home', [PerfilController::class, 'perfil'])
+Route::get('/perfil', [PerfilController::class, 'perfil'])
 	->middleware(['auth'])	
 	->name('perfil.home');
 
