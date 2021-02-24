@@ -35,7 +35,7 @@
 </head>
 
 <body>
-  @yield('menu')
+  
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
@@ -46,7 +46,11 @@
       <div class="profile">
         <a href="#"><img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
           </a>
-        <h1 class="text-light"><a href="index.html">@yield('username', $user->name)</a></h1>
+        <h1 class="text-light">
+          <a href="index.html">  
+            {{Auth::user()->name}}
+          </a>
+        </h1>
         <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -57,12 +61,12 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="{{ route('feed') }}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Feed</span></a></li>
-          <li><a href="{{ route('explore') }}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Explorar</span></a></li>
-          <li><a href="{{ route('library') }}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Biblioteca</span></a></li>
-          <li><a href="{{ route('match') }}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Match</span></a></li>
-           <li><a href="{{ route('perfil') }}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Perfil</span></a></li>
-          <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Logout</span></a></li>
+          <li><a href="{{route('feed')}}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Feed</span></a></li>
+          <li><a href="{{route('explore')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Explorar</span></a></li>
+          <li><a href="{{route('library')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Biblioteca</span></a></li>
+          <li><a href="{{route('match')}}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Match</span></a></li>
+           <li><a href="#" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Perfil</span></a></li>
+          <li><a href="#" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Logout</span></a></li>
           <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
           </form>
@@ -70,6 +74,14 @@
       </nav><!-- .nav-menu -->
     </div>
   </header><!-- End Header -->
+
+  <main id="main">
+    
+    @yield('main-content')
+
+  </main>
+
+  @yield('menu')
 
    <!-- Vendor JS Files -->
   <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
