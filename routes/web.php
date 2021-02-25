@@ -8,6 +8,7 @@ use App\Http\Controllers\{
 	LibraryController,
 	MatchController,
 	HomeController,
+	
 };
 
 /*
@@ -22,7 +23,7 @@ use App\Http\Controllers\{
 */
 Route::get('/', function() {
 	$user = Auth::user();	
-    return redirect()->route('perfil.home');
+    return redirect()->route('templates.feed');
 })->middleware(['auth']);
 
 Route::get('/perfil', [PerfilController::class, 'perfil'])
@@ -49,11 +50,12 @@ Route::get('/match',[MatchController::class,'match'])
 	->middleware(['auth'])
 	->name('match');
 
-// Rota para o controle de pessoas logadas
-	/*
-Route::get('/perfil',[PerfilController::class,'perfil'])
-	->middleware(['auth'])
-	->name('perfil');
-*/
+Route::get('/perfil/{id}/edit', [PerfilController::class, 'edit'] 
+)->middleware(['auth'])
+	->name('perfil.edit');
+
+	Route::put('/update/{id}', [PerfilController::class, 'update']
+)->middleware(['auth'])
+	->name('perfil.update');
 
 require __DIR__.'/auth.php';
