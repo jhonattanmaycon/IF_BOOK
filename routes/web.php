@@ -8,6 +8,7 @@ use App\Http\Controllers\{
 	LibraryController,
 	MatchController,
 	HomeController,
+	LivroController,
 	
 };
 
@@ -57,5 +58,7 @@ Route::get('/perfil/{id}/edit', [PerfilController::class, 'edit']
 	Route::put('/update/{id}', [PerfilController::class, 'update']
 )->middleware(['auth'])
 	->name('perfil.update');
+
+Route::resource('livros', LivroController::class);
 
 require __DIR__.'/auth.php';
