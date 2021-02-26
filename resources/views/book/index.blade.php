@@ -10,6 +10,7 @@
 <div class="container">
 	@if(count($book))
 		@for($i = 0; $i < count($book); $i++)
+			<img src="{{asset('storage/app/public/imgcapas/{ $book[$i]->cover }')}}" alt="">
 			<p>Título: {{ $book[$i]->title }}</p>
 			<p>Autor: {{ $book[$i]->author}}</p>
 			<p>Gênero: {{ $book[$i]->genre }}</p>

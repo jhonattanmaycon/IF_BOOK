@@ -20,7 +20,7 @@
     <h1 class="text-primary"><span class="glyphicon glyphicon-user"></span>Crie um livro amado admin!</h1>
       <hr>
   <div class="row">
-    <form class="form-horizontal" role="form" method="post" action="{{ route('livros.store') }}">
+    <form class="form-horizontal" role="form" method="post" action="{{ route('livros.store') }}" enctype="multipart/form-data">
       <!-- left column -->
 
       <div class="col-md-3">
@@ -80,7 +80,7 @@
               <textarea name="synopsis" class="form-control"></textarea>
             </div>
           </div>
-            <input type="submit" name="submit" value="Salvar Alterações" class="btn btn-primary mt-3">
+            <input type="submit" name="submit" value="Criar" class="btn btn-primary mt-3">
           </div>
         </form>
       </div>

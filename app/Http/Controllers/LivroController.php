@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Str;
 class LivroController extends Controller
 {
     /**
@@ -35,7 +36,9 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
+        
         $livro = new Book();
+        $data = $request->all();
 
         $livro->title = $request->post('title');
         $livro->author = $request->post('author');
@@ -43,6 +46,33 @@ class LivroController extends Controller
         $livro->genre = $request->post('genre');
         $livro->age = $request->post('age');
         $livro->year = $request->post('year');
+        
+        $nameFile = Str::camel($livro->title) . '.' .  $request->cover->extension();
+       
+
+        $livro->cover = $nameFile;
+
+        $upload = $request->cover->storeAs('imgcapas', $nameFile);
+
+        // if($request->hasFile('cover') && $request->file('cover')->isValid()) {
+        //     $nome =  Str::camel($livro->title);
+        //     $extesao = $request->file('cover')->extension();
+        //     $nameFile = "{$nome}.{$extesao}";
+
+        //    $upload = $request->cover->storeAs('imgcapas', $nameFile);
+
+        //    $data['cover'] = $nameFile;
+
+
+        //    if (!$upload) {
+           
+
+
+        //    }
+
+           
+
+        
 
         $livro->save();
 
