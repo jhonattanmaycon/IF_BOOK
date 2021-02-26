@@ -24,7 +24,7 @@ use App\Http\Controllers\{
 */
 Route::get('/', function() {
 	$user = Auth::user();	
-    return redirect()->route('templates.feed');
+    return redirect()->route('feed');
 })->middleware(['auth']);
 
 Route::get('/perfil', [PerfilController::class, 'perfil'])

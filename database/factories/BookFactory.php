@@ -29,6 +29,11 @@ class BookFactory extends Factory
             'policial',
             'anime'
         ];
+        $url = [
+            'storage/app/public/teste1.png',
+            'storage/app/public/teste2.png'
+        ];
+
 
         return [
             'title' => $this->faker->catchPhrase(),
@@ -36,6 +41,8 @@ class BookFactory extends Factory
             'synopsis' => $this->faker->realText('50'),
             'genre' => array_rand($genre),
             'age' => array_rand(range(1,18)),
+            'year' => $this->faker->year,
+            'cover' => array_rand($url),
         ];
     }
 }
