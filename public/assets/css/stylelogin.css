@@ -3,7 +3,14 @@ body {
 
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #5b719b inset;
+}
 
+/* Cor do texto do autocomplete */
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
 .page-content {
 	width: 100%;
 	margin:  0 auto;

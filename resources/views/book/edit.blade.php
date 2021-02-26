@@ -11,14 +11,27 @@
             cursor: pointer;
         }
     </style>
+        <script>
+          var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+              URL.revokeObjectURL(output.src) // free memory
+            }
+          };
+        </script>
 </head>
 <body>
 
     Editar Livro - @if($book) {{ $book->id }} @endif
-        
     <form action="{{route('livros.update',['livro'=>$book->id])}}" method="post">
         @csrf
         @method('put')
+
+       <input type="file" accept="image/*" name="cover" onchange="loadFile(event)">
+        <img id="output" width="250px" />
+
+        <br>
 
         <label for="title">Título:</label>
         <input type="text" name="title" value={{$book->title}} >
@@ -41,3 +54,4 @@
     </form>
 </body>
 </html>
+
