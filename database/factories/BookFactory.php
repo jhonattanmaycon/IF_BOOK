@@ -36,6 +36,7 @@ class BookFactory extends Factory
             'synopsis' => $this->faker->realText('50'),
             'genre' => array_rand($genre),
             'age' => array_rand(range(1,18)),
+            'year' => $this->faker->year,
         ];
     }
 }

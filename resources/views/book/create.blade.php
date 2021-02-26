@@ -29,25 +29,42 @@
         </div>
         <h3>Informações do livro</h3>
         
-        <form class="form-horizontal" role="form" method="post" action="">
+        <form class="form-horizontal" role="form" method="post" action="{{ route('livros.store') }}">
           @csrf
-          @method('put')
           <div class="form-group">
-            <label class="col-lg-3 control-label">Nome:</label>
+            <label class="col-lg-3 control-label">Titulo:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="name" type="text" value="">
+              <input class="form-control" name="title" type="text" value="">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Cidade:</label>
+            <label class="col-lg-3 control-label">Autor:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="cidade" type="text" value="">
+              <input class="form-control" name="author" type="text" value="">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Idade:</label>
+            <label class="col-lg-3 control-label">Gênero:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="idade" type="text" value="">
+              <input class="form-control" name="genre" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Ano:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="year" type="number" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Faixa Etária:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="age" type="number" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Sinopse:</label>
+            <div class="col-lg-8">
+              <textarea name="synopsis" class="form-control"></textarea>
             </div>
           </div>
             <input type="submit" name="submit" value="Salvar Alterações" class="btn btn-primary mt-3">

@@ -35,7 +35,18 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $livro = new Book();
+
+        $livro->title = $request->post('title');
+        $livro->author = $request->post('author');
+        $livro->synopsis = $request->post('synopsis');
+        $livro->genre = $request->post('genre');
+        $livro->age = $request->post('age');
+        $livro->year = $request->post('year');
+
+        $livro->save();
+
+        return redirect()->route('livros.index', ['book'=>$livro]);
     }
 
     /**
@@ -46,7 +57,12 @@ class LivroController extends Controller
      */
     public function show($id)
     {
-        //
+        $livro = Book::find($id);
+
+        if($livro) {
+            return view('book.show', ['book'=>$livro]);
+        }
+        return redirect()->route('livros.index');
     }
 
     /**
@@ -57,7 +73,11 @@ class LivroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $livro = Book::find($id);
+        if($livro) {
+            return view('book.edit' , ['book'=>$livro]);
+        } 
+        return redirect()->route('livros.index');
     }
 
     /**
@@ -69,7 +89,18 @@ class LivroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $livro = Book::find($id);
+
+       $data = $request->all();
+
+       $livro->title = $data['title'];
+       $livro->author = $data['author'];
+       $livro->genre = $data['genre'];
+       $livro->year = $data['year'];
+       $livro->age = $data['age'];
+       $livro->synopsis = $data['synopsis'];
+       $livro->save();
+       return view('book.show' , ['book'=>$livro]);
     }
 
     /**
@@ -80,6 +111,8 @@ class LivroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $livro = Book::find($id);
+        $livro->delete();
+      return redirect()->route('livros.index');
     }
 }

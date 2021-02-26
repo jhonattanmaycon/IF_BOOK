@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('synopsis');
             $table->string('genre');            
             $table->integer('age');
+            $table->integer('year');
 
             $table->timestamps();
         });
