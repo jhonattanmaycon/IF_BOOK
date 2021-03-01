@@ -10,6 +10,8 @@
     <h2>Livro: @if($book) {{ $book->title }} @endif</h2>
 
     @if ($book)
+       {{-- <img src="{{Storage::get('imgcapas/', $book->cover)}}"></img> --}}
+       <img src="{{asset('capa_imagem/' . $book->cover)}}" width="150px"></img>
         <p>Titulo: {{ $book->title }}</p>
         <p>Autor:{{ $book->author }} </p>
         <p>Gênero: {{ $book->genre }}</p>

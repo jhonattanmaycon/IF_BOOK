@@ -42,7 +42,7 @@
 					<div class="tabcontent" id="sign-in">
 						<div class="form-row">
 							<label class="form-row-inner">
-								<input type="email" id="email" name="email" id="full_name_1" class="input-text" :value="old('email')" required>
+								<input type="text" id="email" name="email" id="full_name_1" class="input-text" :value="old('email')" required>
 								<span class="label">Nome de usuário ou e-mail</span>
 		  						<span class="border"></span>
 							</label>
@@ -92,7 +92,7 @@
 						</div>
 						<div class="form-row">
 							<label class="form-row-inner">
-								<input type="email" name="email" id="email" class="input-text" :value="old('email')" required>
+								<input type="text" name="email" id="email" class="input-text" :value="old('email')" required>
 								<span class="label">Digite um email válido</span>
 		  						<span class="border"></span>
 							</label>
