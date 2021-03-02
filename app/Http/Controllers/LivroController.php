@@ -51,10 +51,7 @@ class LivroController extends Controller
         $nameFile = Str::camel($livro->title).".". $request->cover->extension();
 
         $request->cover->storeAs('imgcapas', $nameFile);
-
-        // $url = Storage::url('/public/imgcapas/'. $nameFile);
         
-
         $livro->cover = $nameFile;           
         
         $livro->save();

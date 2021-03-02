@@ -44,7 +44,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <a href="#"><img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <a href=""><img src=" @yield('imagem') " alt="" class="img-fluid rounded-circle">
           </a>
         <h1 class="text-light">
           <a href="index.html">  
@@ -63,7 +63,11 @@
         <ul>
           <li><a href="{{route('feed')}}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Feed</span></a></li>
           <li><a href="{{route('explore')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Explorar</span></a></li>
+<<<<<<< HEAD
           <li><a href="{{route('library')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Meus Livros</span></a></li>
+=======
+          <li><a href="{{route('library', ['user'=> Auth::user()->id])}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Biblioteca</span></a></li>
+>>>>>>> 8002ee824b0e532fe19851eb205811f248dbe3bb
           <li><a href="{{route('match')}}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Match</span></a></li>
            <li><a href="{{ route('perfil.home') }}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Perfil</span></a></li>
           <li><a href="#" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Logout</span></a></li>

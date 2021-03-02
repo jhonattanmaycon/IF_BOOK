@@ -2,7 +2,7 @@
 
 @section('menu')
 
-
+@section('imagem' , "{{asset('foto_perfil/' . $user->photo)}}")
 
 <section>
 
@@ -14,7 +14,7 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
-                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                <img src="{{ asset('foto_perfil/' . $user->photo) }}" alt="Admin" class="rounded-circle" width="150">
                 <div class="mt-3">
                   <h4> {{ $user->name }} </h4>
                   <p class="text-secondary mb-1">{{ $user->city }}</p>
@@ -26,9 +26,13 @@
                     <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
 
                   </div>
+                  @unless($user->id == Auth::user()->id)
                   <button class="btn btn-primary">Seguir</button>
                   <button class="btn btn-outline-primary">Mensagem</button>
+                  @endunless
+                  @unless($user->id != Auth::user()->id)
                   <a href="{{ route('perfil.edit', ['id'=>$user->id]) }}"><button class="btn btn-primary">Editar Perfil</button></a>
+                  @endunless
                 </div>
               </div>
             </div>

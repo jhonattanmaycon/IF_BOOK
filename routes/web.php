@@ -42,7 +42,7 @@ Route::get('/explore',[ExploreController::class, 'explore'])
 	->name('explore');
 
 // Rota para controle da biblioteca
-Route::get('/library',[LibraryController::class,'library'])
+Route::get('/library/{user}',[LibraryController::class,'library'])
 	->middleware(['auth'])
 	->name('library');
 
