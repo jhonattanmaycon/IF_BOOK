@@ -44,7 +44,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <a href=""><img src=" @yield('imagem') " alt="" class="img-fluid rounded-circle">
+        <a href=""><img src=" @yield('perfil') " alt="" class="img-fluid rounded-circle">
           </a>
         <h1 class="text-light">
           <a href="index.html">  

@@ -2,7 +2,7 @@
 
 @section('menu')
 
-@section('imagem' , "{{asset('foto_perfil/' . $user->photo)}}")
+@section('perfil' , "{{asset('foto_perfil/' . $user->photo)}}")
 
 <section>
 
