@@ -46,6 +46,9 @@ Route::get('/library/{user}',[LibraryController::class,'library'])
 	->middleware(['auth'])
 	->name('library');
 
+Route::get('/library_get', [LibraryController::class,'getbook']) 
+	->name('getbook');
+
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])
 	->middleware(['auth'])

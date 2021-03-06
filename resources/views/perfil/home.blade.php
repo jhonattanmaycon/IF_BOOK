@@ -2,7 +2,6 @@
 
 @section('menu')
 
-@section('perfil' , "{{asset('foto_perfil/' . $user->photo)}}")
 
 <section>
 

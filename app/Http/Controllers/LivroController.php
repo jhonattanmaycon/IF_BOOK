@@ -125,4 +125,13 @@ class LivroController extends Controller
         $livro->delete();
       return redirect()->route('livros.index');
     }
+    public function find($nome)
+    {
+        $book = Book::all();
+        $livro =  Book::find($book->title);
+        if($livro == $nome) {
+            return view('book.show', ['book'=>$livro]);
+        }
+        return redirect()->route('livros.index');
+    }
 }

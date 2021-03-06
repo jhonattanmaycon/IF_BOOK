@@ -44,7 +44,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <a href=""><img src=" @yield('perfil') " alt="" class="img-fluid rounded-circle">
+        <a href=""><img src="{{asset('foto_perfil/' . Auth::user()->photo)}} " alt="" class="img-fluid rounded-circle">
           </a>
         <h1 class="text-light">
           <a href="index.html">  
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <nav id="navbar" class="nav-menu navbar">
+      <nav id="navbar" class="nav-menu nav2">
         <ul>
           <li><a href="{{route('feed')}}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Feed</span></a></li>
           <li><a href="{{route('explore')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Explorar</span></a></li>
