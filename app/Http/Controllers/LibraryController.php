@@ -21,10 +21,9 @@ class LibraryController extends Controller
 
 		$book = Book::all(); //falta a condição
 
-		
+     	$books = $user->books;
 
-
-    	return view('templates.library',['user'=> $user, 'bookuser'=>$bookuser, 'book'=>$book]);   
+    	return view('templates.library',[ 'user'=> $user, 'books'=> $books]);   
 
     }
 

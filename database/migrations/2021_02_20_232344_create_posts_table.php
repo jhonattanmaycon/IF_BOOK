@@ -16,9 +16,9 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('message'); //editor tinymce
-            $table->unsignedBigInteger('user')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
 
-            $table->foreign('user')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
 
