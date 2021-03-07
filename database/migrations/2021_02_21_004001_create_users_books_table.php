@@ -16,8 +16,8 @@ class CreateUsersBooksTable extends Migration
         Schema::create('users_books', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user');
-            $table->unsignedBigInteger('book');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('book_id');
 
             //indica status de leitura sobre o livro
             $table->boolean('has');
@@ -28,11 +28,11 @@ class CreateUsersBooksTable extends Migration
 
             $table->integer('rating');
 
-            $table->foreign('user')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
 
-            $table->foreign('book')
+            $table->foreign('book_id')
                 ->references('id')
                 ->on('books');
 

@@ -12,7 +12,9 @@ class LibraryController extends Controller
 {
      public function library(User $user) {
 
-    	return view('templates.library',[ 'user'=> $user]);   
+     	$books = $user->books;
+
+    	return view('templates.library',[ 'user'=> $user, 'books'=> $books]);   
 
     }
 

@@ -23,8 +23,8 @@ class CommentFactory extends Factory
     {
         return [
             'text' => $this->faker->realText(20),
-            'user' => \App\Models\User::inRandomOrder()->get()->first()->id,
-            'post' => \App\Models\Post::inRandomOrder()->get()->first()->id
+            'user_id' => \App\Models\User::inRandomOrder()->get()->first()->id,
+            'post_id' => \App\Models\Post::inRandomOrder()->get()->first()->id
         ];
     }
 }

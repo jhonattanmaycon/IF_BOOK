@@ -1,6 +1,6 @@
 @extends('layouts.ifbook')
 
-@section('menu')
+@section('main-content')
 
 
 <section>
