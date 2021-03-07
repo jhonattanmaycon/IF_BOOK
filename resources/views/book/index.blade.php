@@ -18,6 +18,7 @@
 			<p>Faixa Etária: {{ $book[$i]->age }}</p>
 			<p>Sinopse: {{ $book[$i]->synopsis }}</p>
 			<a href="{{ route('livros.show', ['livro'=>$book[$i]->id]) }}"><button>Ver</button></a> 
+			<a href="{{ route('library.update', ['livro'=>$book[$i]->id]) }}"><button>Pegar</button></a> 
 			<hr>
 		@endfor
 	@endif

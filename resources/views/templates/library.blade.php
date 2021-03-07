@@ -40,7 +40,54 @@
                                 <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF">Fines/Fees ($0.00)</a>
                                 </li>
                             </ul>
-                            <div class="tab-content">
+                            <div class="container">    
+
+
+		
+            @if(count($bookuser))
+		@for($i = 0; $i < count($bookuser); $i++)
+  
+		<div class="tab-content container">
+			<div id="sectionA" class="tab-pane fade in active">
+					<table class="table table-bordered shop_table cart">
+						<thead>
+							<tr>
+								<th class="product-name">Informações</th>
+								<th class="product-quantity">Sinópse</th>
+								<th class="product-actions">Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="cart_item">
+								<td data-title="Product" class="product-name">
+									<span class="product-thumbnail">
+										<a href="#"><img
+											src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
+											width="200px" alt="cart-product-1"></a>
+										</span> <br>
+										<span class="product-detail">
+											<strong>{{ $book[$i]->title }}</strong> <br>
+											<span><strong>Author: </strong>{{ $book[$i]->author }}</span> <br>
+											<span><strong>Gênero :</strong> {{ $book[$i]->genre }}</span> <br>
+											<span><strong>Ano:</strong>{{ $book[$i]->year }}</span> <br>
+											<span><strong>Faixa Etária:</strong>{{ $book[$i]->age }}</span>
+										</span>
+									</td>
+									
+									<td data-title="Price" class="product-price">
+										{{ $book[$i]->synopsis}}
+									</td>
+									<td data-title="action" class="product-action">
+								
+										<a href="{{ route('addbook', ['user'=> Auth::user()->id]) }}"><button>Adicionar</button></a>
+									</td>
+									@endfor
+									@endif
+								</div>  
+                        
+
+                    
+                            {{-- <div class="tab-content">
                                 <div id="sectionA" class="tab-pane fade in active">
                                     <form method="post" action="http://libraria.demo.presstigers.com/cart-page.html">
                                         <table class="table table-bordered shop_table cart">
@@ -261,7 +308,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!-- .entry-content -->
+                    </div><!-- .entry-content --> --}}
                 </div>
             </div>
         </div>

@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\{
 	User,
 	Book,
 };
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class LibraryController extends Controller
 {
      public function library(User $user) {
+		$bookuser = DB::table('users_books')->where('user', Auth::user()->id)->get();
 
-    	return view('templates.library',[ 'user'=> $user]);   
+		$Lista = $user->books;
+
+
+		$book = Book::all(); //falta a condição
+
+		
+
+
+    	return view('templates.library',['user'=> $user, 'bookuser'=>$bookuser, 'book'=>$book]);   
 
     }
 
@@ -20,4 +32,10 @@ class LibraryController extends Controller
      	 $book = Book::all();
      	return view('templates.getbook', ['book' => $book]);
      }
+
+	
+
+	 public function addbook(User $user, Book $livro){
+		return "oi {{$user}}";
+	 }
 }
