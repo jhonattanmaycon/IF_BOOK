@@ -18936,6 +18936,14 @@ a:focus {
 #home-v1-header-carousel .carousel-caption .slide-buttons .btn.btn-default:hover {
   color: #fff;
 }
+h5 {
+  max-width: 25ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: tomato;
+ 
+}
 #home-v1-header-carousel .carousel-control {
   background-color: transparent;
   background-image: url(images/header-slider/home-v1/slider-controls.png);

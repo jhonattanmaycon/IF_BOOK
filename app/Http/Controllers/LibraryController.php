@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 class LibraryController extends Controller
 {
      public function library(User $user) {
-		$bookuser = DB::table('users_books')->where('user', Auth::user()->id)->get();
 
-		$Lista = $user->books;
-
-
-		$book = Book::all(); //falta a condição
 
      	$books = $user->books;
 
