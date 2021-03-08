@@ -23,7 +23,7 @@ class PostFactory extends Factory
     {
         return [
             'message' => $this->faker->realText(100),
-            'user' => \App\Models\User::inRandomOrder()->get()->first()->id,
+            'user_id' => \App\Models\User::inRandomOrder()->get()->first()->id,
         ];
     }
 }

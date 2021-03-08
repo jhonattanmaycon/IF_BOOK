@@ -39,7 +39,7 @@ class BookFactory extends Factory
             'title' => $this->faker->catchPhrase(),
             'author' => $this->faker->name(),
             'synopsis' => $this->faker->realText('50'),
-            'genre' => array_rand($genre),
+            'genre' => $genre[array_rand($genre)],
             'age' => array_rand(range(1,18)),
             'year' => $this->faker->year,
             'cover' => array_rand($url),

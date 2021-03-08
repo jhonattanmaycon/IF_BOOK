@@ -16,14 +16,14 @@ class CreatePostsBooksTable extends Migration
         Schema::create('posts_books', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('post');
-            $table->unsignedBigInteger('book');
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('book_id');
 
-            $table->foreign('post')
+            $table->foreign('post_id')
                 ->references('id')
                 ->on('posts');
 
-            $table->foreign('book')
+            $table->foreign('book_id')
                 ->references('id')
                 ->on('books');
 
