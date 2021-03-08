@@ -49,8 +49,12 @@ Route::get('/library/{user}',[LibraryController::class,'library'])
 Route::get('/library_get', [LibraryController::class,'getbook']) 
 	->name('getbook');
 
-Route::get('/library_add', [LibraryController::class,'addbook']) 
+Route::get('/library_add/{book}', [LibraryController::class,'addbook']) 
 	->name('addbook');
+
+Route::get('/library_remove/{book}', [LibraryController::class,'remove']) 
+	->name('remove');
+
 
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])

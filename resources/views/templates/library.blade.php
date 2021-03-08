@@ -34,15 +34,8 @@
 	
     <section class="d-flex flex-column justify-content-center align-items-center">
 
-        <!-- Start: Header Section -->
-
-
-        <!-- End: Header Section -->
-
-        <!-- Start: Page Banner -->
-
-        <!-- End: Page Banner -->
-        <!-- Start: Cart Section -->
+        <a href="{{ route('getbook') }}"><button class="button">Adicionar Livro</button></a>
+  
         <div id="content" class="site-content">
             <div class="col-md-12">
                 <div class="page type-page status-publish hentry">
@@ -53,8 +46,8 @@
                                 <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Para ler (x)</a></li>
                                 <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Lidos (0)</a></li>
                                 <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Favoritos (x)</a></li>
-                                </li>
                             </ul>
+
                             <div class="tab-content">
                                 <div id="sectionA" class="tab-pane fade in active">
                                     <form method="post" action="http://libraria.demo.presstigers.com/cart-page.html">
@@ -62,14 +55,16 @@
                                             <thead>
                                                 <tr>
                                                     <th class="product-name">&nbsp;</th>
-                                                    <th class="product-name">Title</th>
-                                                    <th class="product-quantity">Action</th>
-                                                    <th class="product-price">Pickup Location </th>
+                                                    <th class="product-name">Obras</th>
+                                                    <th class="product-quantity">Ações</th>
+                                                    <th class="product-price">Notas</th>
                                                     <th class="product-subtotal">&nbsp;</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                    @foreach($books as $book)
+
+                                                @foreach($books as $book) 
+                                                @if(Auth::user()->hasBook($book->id))
                                                 <tr class="cart_item">
                                                     <td data-title="cbox" class="product-cbox">
                                                         <span>
@@ -101,16 +96,23 @@
                                                         </div>
                                                        
                                                     </td>
-                                                    <td data-title="Price" class="product-price">
+                                                    <td class="product-price">
                                                         <p>Sua avaliação foi <a href="#">x estrelas</a> <br>
                                                          Para ver suas postagens <a href="#"> Clique aqui </a></p>
                                                     </td>
                                                     <td class="product-remove">
-                                                        Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="#">Remover</a>
+                                                        Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove', ['book'=> $book->id])}}">Remover</a>
                                                     </td>
                                                 </tr>
+
+                                                @endif
                                                 @endforeach
-                                               
+                                                {{-- Encerrando a tabela que mostra os livros do usuario --}}
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+
                                 <div id="sectionB" class="tab-pane fade in">
                                     <h5> Ipsum Dolor</h5>
                                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have

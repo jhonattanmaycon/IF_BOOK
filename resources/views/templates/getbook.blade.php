@@ -58,8 +58,9 @@
 										{{ $book[$i]->synopsis}}
 									</td>
 									<td data-title="action" class="product-action">
-								
-										<a href="{{ route('addbook', ['user'=> Auth::user()->id]) }}"><button>Adicionar</button></a>
+										
+										<a href="{{ route('addbook', ['book'=> $book[$i]->id]) }}"><button  @if(Auth::user()->exist($book[$i]->id)) disabled @endif>Adicionar</button></a>
+											{{-- <a href="{{ route('addbook', ['book'=> $book[$i]->id]) }}"><button>Adicionar</button></a>  --}}
 									</td>
 									@endfor
 									@endif
