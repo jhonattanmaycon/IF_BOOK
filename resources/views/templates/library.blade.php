@@ -23,7 +23,6 @@
         <link href="{{ asset('assets/css/stylelibrary.css') }}" rel="stylesheet" type="text/css" />
 
     </head>
-
     <section class="d-flex flex-column justify-content-center align-items-center">
         <a href="{{ route('getbook') }}"><button class="button">Adicionar Livro</button></a>
         <div id="content" class="site-content">
@@ -57,6 +56,7 @@
                                                 <tr class="cart_item">
 
                                                     <td data-title="Product" class="product-name">
+                                                        <div class="row">
                                                         <span class="product-thumbnail">
                                                             <a href="#"><img
                                                                 src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
@@ -69,6 +69,7 @@
                                                                 <span><strong>Ano:</strong> {{ $book->year }}</span>
                                                                 <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
                                                             </span>
+                                                            </div>
                                                         </td>
                                                         <td data-title="action" class="product-action">
                                                             <div class="dropdown">
