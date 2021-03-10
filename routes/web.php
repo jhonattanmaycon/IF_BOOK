@@ -55,6 +55,25 @@ Route::get('/library_add/{book}', [LibraryController::class,'addbook'])
 Route::get('/library_remove/{book}', [LibraryController::class,'remove']) 
 	->name('remove');
 
+Route::get('/library_paraler/{book}', [LibraryController::class,'paraLer']) 
+	->name('paraLer');
+
+Route::get('/library_jalido/{book}', [LibraryController::class,'jaLido']) 
+	->name('jaLido');
+
+Route::get('/library_parafav/{book}', [LibraryController::class,'paraFav']) 
+	->name('paraFav');
+
+Route::get('/library_removeToRead/{book}', [LibraryController::class,'removeToRead']) 
+	->name('removeToRead');
+
+Route::get('/library_removeRead/{book}', [LibraryController::class,'removeRead']) 
+	->name('removeRead');
+
+Route::get('/library_removeFav/{book}', [LibraryController::class,'removeFav']) 
+	->name('removeFav');
+
+
 
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])
