@@ -49,6 +49,17 @@ Route::get('/library/{user}',[LibraryController::class,'library'])
 Route::get('/library_get', [LibraryController::class,'getbook']) 
 	->name('getbook');
 
+Route::get('/library_add/{book}', [LibraryController::class,'addbook']) 
+	->name('addbook');
+
+Route::get('/library_remove/{book}', [LibraryController::class,'remove']) 
+	->name('remove');
+Route::get('/library_toRead/{book}', [LibraryController::class,'toRead'])->name('toRead');
+Route::get('/library_revometoRead/{book}', [LibraryController::class,'remove_toRead'])->name('remove_toRead');
+Route::get('/library_read/{book}', [LibraryController::class,'read'])->name('read');
+Route::get('/library_removeRead/{book}', [LibraryController::class,'remove_read'])->name('remove_read');
+
+
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])
 	->middleware(['auth'])

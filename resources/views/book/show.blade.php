@@ -7,7 +7,7 @@
     <title>{{ $book->title }}</title>
 </head>
 <body>
-    <h2>Livro: @if($book) {{ $book->title }} </h2>
+    <h2>Livro: @if($book) {{ $book->title }} @endif</h2>
 
     @if ($book)
        {{-- <img src="{{Storage::get('imgcapas/', $book->cover)}}"></img> --}}
