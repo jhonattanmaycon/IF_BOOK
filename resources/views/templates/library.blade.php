@@ -35,241 +35,363 @@
                 <div class="entry-content">
                     <div class="woocommerce table-tabs" id="responsiveTabs">
                         <ul class="nav nav-tabs">
+
                             <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Meus Livros({{ Auth::user()->countBooks() }})</a></li>
+
                             <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Para ler ({{ Auth::user()->countToRead() }})</a></li>
+
+                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionE">Lendo ({{ Auth::user()->countReading() }})</a></li>
+
+
                             <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Lidos ({{ Auth::user()->countRead() }})</a></li>
-                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Favoritos (x)</a></li>
+
+                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Favoritos ({{ Auth::user()->countFavorito() }})</a></li>
                         </ul>
 
                         <div class="tab-content">
                             <div id="sectionA" class="tab-pane fade in active">
-                                <form method="post" action="http://libraria.demo.presstigers.com/cart-page.html">
-                                 
-                                    <table class="table table-bordered shop_table cart">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-name">&nbsp;</th>
-                                                <th class="product-name">Obras</th>
-                                                <th class="product-quantity">Ações</th>
-                                                <th class="product-price">Notas</th>
-                                                <th class="product-subtotal">&nbsp;</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                    
-                                            @foreach($books as $book) 
-                                            @if(Auth::user()->hasBook($book->id))
-                                            <tr class="cart_item">
-                                                <td data-title="cbox" class="product-cbox">
-                                                    <span>
-                                                        <input type="checkbox" id="cbox3" value="first_checkbox">
-                                                    </span>
+                                <table class="table table-bordered shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">&nbsp;</th>
+                                            <th class="product-name">Obras</th>
+                                            <th class="product-quantity">Ações</th>
+                                            <th class="product-price">Notas</th>
+                                            <th class="product-subtotal">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach($books as $book) 
+                                        @if(Auth::user()->hasBook($book->id))
+                                        <tr class="cart_item">
+                                            <td data-title="cbox" class="product-cbox">
+                                                <span>
+                                                    <input type="checkbox" id="cbox3" value="first_checkbox">
+                                                </span>
+                                            </td>
+                                            <td data-title="Product" class="product-name">
+                                                <div class="row">
+                                                    <span class="product-thumbnail">
+                                                        <a href="#"><img
+                                                            src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
+                                                            width="200px" alt="cart-product-1"></a>
+                                                        </span>
+                                                        <span class="product-detail">
+                                                            <a href="#"><h5>{{ $book->title }}</h5></a>
+                                                            <span><strong>Author:</strong> {{ $book->author }}</span>
+                                                            <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                                                            <span><strong>Ano:</strong> {{ $book->year }}</span>
+                                                            <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
+
+                                                        </span>
+                                                    </div>
                                                 </td>
-                                                <td data-title="Product" class="product-name">
-                                                    <div class="row">
-                                                        <span class="product-thumbnail">
-                                                            <a href="#"><img
-                                                                src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
-                                                                width="200px" alt="cart-product-1"></a>
-                                                            </span>
-                                                            <span class="product-detail">
-                                                                <a href="#"><h5>{{ $book->title }}</h5></a>
-                                                                <span><strong>Author:</strong> {{ $book->author }}</span>
-                                                                <span><strong>Gênero:</strong>{{ $book->genre }}</span>
-                                                                <span><strong>Ano:</strong> {{ $book->year }}</span>
-                                                                <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
+                                                <td data-title="action" class="product-action">
+                                                    <div class="dropdown">
+                                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="{{ route('toRead', ['book'=> $book->id]) }}">Para Ler</a></li>
+                                                            <li><a href="{{ route('read', ['book'=> $book->id]) }}">Já Lido</a></li>
+                                                            <li><a href="{{ route('reading',['book'=> $book->id]) }}">Lendo</a></li>
+                                                           
+                                                        </ul>
+                                                    </div>
 
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="action" class="product-action">
-                                                        <div class="dropdown">
-                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="{{ route('toRead', ['book'=> $book->id]) }}">Para Ler</a></li>
-                                                                <li><a href="#">Já Lido</a></li>
-                                                                <li><a href="#">Fazer anotações</a></li>
-                                                            </ul>
-                                                        </div>
-
-                                                    </td>
-                                                    <td class="product-price">
-                                                        <p>Sua avaliação foi <a href="#">x estrelas</a> <br>
-                                                           Para ver suas postagens <a href="#"> Clique aqui </a></p>
-                                                       </td>
-                                                       <td class="product-remove">
-                                                        Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove', ['book'=> $book->id])}}">Remover</a>
-                                                    </td>
-                                                </tr>
-                                                @else
-                                                    <h1> Você não possui nenhum livro. Cliquem em 'Adicionar Livro e escolha um do seu agrado :)' </h1>
-                                                @endif
-                                                @endforeach
-                                                {{-- Encerrando a tabela que mostra os livros do usuario --}}
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
-
-
-
-                                {{-- SESSÂO PARA LER --}}
-
-                                <div id="sectionB" class="tab-pane fade in">
-                                   <table class="table table-bordered shop_table cart">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-name">&nbsp;</th>
-                                                <th class="product-name">Obras</th>
-                                                <th class="product-quantity">Ações</th>
-                                                <th class="product-price">Notas</th>
-                                                <th class="product-subtotal">&nbsp;</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                    
-                                            @foreach($books as $book) 
-                                            @if(Auth::user()->toRead($book->id))
-                                            <tr class="cart_item">
-                                                <td data-title="cbox" class="product-cbox">
-                                                    <span>
-                                                        <input type="checkbox" id="cbox3" value="first_checkbox">
-                                                    </span>
                                                 </td>
-                                                <td data-title="Product" class="product-name">
-                                                    <div class="row">
-                                                        <span class="product-thumbnail">
-                                                            <a href="#"><img
-                                                                src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
-                                                                width="200px" alt="cart-product-1"></a>
-                                                            </span>
-                                                            <span class="product-detail">
-                                                                <a href="#"><h5>{{ $book->title }}</h5></a>
-                                                                <span><strong>Author:</strong> {{ $book->author }}</span>
-                                                                <span><strong>Gênero:</strong>{{ $book->genre }}</span>
-                                                                <span><strong>Ano:</strong> {{ $book->year }}</span>
-                                                                <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
-
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="action" class="product-action">
-                                                        <div class="dropdown">
-                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
-                                                            <ul class="dropdown-menu">
-                                                                
-                                                                <li><a href="{{ route('read', ['book'=> $book->id]) }}">Já Lido</a></li>
-                                                            </ul>
-                                                        </div>
-
-                                                    </td>
-                                                    <td class="product-price">
-                                                        <p>Sua avaliação foi <a href="#">x estrelas</a> <br>
-                                                           Para ver suas postagens <a href="#"> Clique aqui </a></p>
-                                                       </td>
-                                                       <td class="product-remove">
-                                                        Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove_toRead', ['book'=> $book->id])}}">Remover</a>
-                                                    </td>
-                                                </tr>
-                                                
-                                                @endif
-                                                @endforeach
-                                                {{-- Encerrando a tabela que mostra os livros do usuario --}}
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
-                                </div>
-                                <div id="sectionC" class="tab-pane fade in">
-                                    <div id="sectionB" class="tab-pane fade in">
-                                   <table class="table table-bordered shop_table cart">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-name">&nbsp;</th>
-                                                <th class="product-name">Obras</th>
-                                                <th class="product-quantity">Ações</th>
-                                                <th class="product-price">Notas</th>
-                                                <th class="product-subtotal">&nbsp;</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                    
-                                            @foreach($books as $book) 
-                                            @if(Auth::user()->read($book->id))
-                                            <tr class="cart_item">
-                                                <td data-title="cbox" class="product-cbox">
-                                                    <span>
-                                                        <input type="checkbox" id="cbox3" value="first_checkbox">
-                                                    </span>
+                                                <td class="product-price">
+                                                    <p>Sua avaliação foi {{ Auth::user()->countRating()}} <br>
+                                                       Para ver suas postagens <a href="#"> Clique aqui </a></p>
+                                                   </td>
+                                                   <td class="product-remove">
+                                                    Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove', ['book'=> $book->id])}}">Remover</a>
                                                 </td>
-                                                <td data-title="Product" class="product-name">
-                                                    <div class="row">
-                                                        <span class="product-thumbnail">
-                                                            <a href="#"><img
-                                                                src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
-                                                                width="200px" alt="cart-product-1"></a>
-                                                            </span>
-                                                            <span class="product-detail">
-                                                                <a href="#"><h5>{{ $book->title }}</h5></a>
-                                                                <span><strong>Author:</strong> {{ $book->author }}</span>
-                                                                <span><strong>Gênero:</strong>{{ $book->genre }}</span>
-                                                                <span><strong>Ano:</strong> {{ $book->year }}</span>
-                                                                <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
-
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="action" class="product-action">
-                                                        <div class="dropdown">
-                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
-                                                            <ul class="dropdown-menu">
-                                                                
-                                                                <li><a href="#">Favoritar</a></li>
-                                                                <li><a href="#">Avaliação</a></li>
-                                                            </ul>
-                                                        </div>
-
-                                                    </td>
-                                                    <td class="product-price">
-                                                        <p>Sua avaliação foi <a href="#">x estrelas</a> <br>
-                                                           Para ver suas postagens <a href="#"> Clique aqui </a></p>
-                                                       </td>
-                                                       <td class="product-remove">
-                                                        Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove_read', ['book'=> $book->id])}}">Remover</a>
-                                                    </td>
-                                                </tr>
-                                                
-                                                @endif
-                                                @endforeach
-                                </div>
-                                <div id="sectionD" class="tab-pane fade in">
-                                    <h5>Lorem Ipsum Dolor</h5>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                        suffered alteration in some form, by injected humour, or randomised words which
-                                        don't look even slightly believable. If you are going to use a passage of Lorem
-                                        Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of
-                                        text. All the Lorem Ipsum generators on the Internet tend to repeat predefined
-                                    chunks as necessary, making this the first true generator on the Internet.</p>
-                                </div>
-
+                                            </tr>
+                                            @else
+                                            <h1> Você não possui nenhum livro. Cliquem em 'Adicionar Livro e escolha um do seu agrado :)' </h1>
+                                            @endif
+                                            @endforeach
+                                            {{-- Encerrando a tabela que mostra os livros do usuario --}}
+                                        </tbody>
+                                    </table>
+                                </form>
                             </div>
+
+
+
+                            {{-- SESSÂO PARA LER --}}
+
+                            <div id="sectionB" class="tab-pane fade in">
+                               <table class="table table-bordered shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">&nbsp;</th>
+                                        <th class="product-name">Obras</th>
+                                        <th class="product-quantity">Ações</th>
+                                        <th class="product-price">Notas</th>
+                                        <th class="product-subtotal">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach($books as $book) 
+                                    @if(Auth::user()->toRead($book->id))
+                                    <tr class="cart_item">
+                                        <td data-title="cbox" class="product-cbox">
+                                            <span>
+                                                <input type="checkbox" id="cbox3" value="first_checkbox">
+                                            </span>
+                                        </td>
+                                        <td data-title="Product" class="product-name">
+                                            <div class="row">
+                                                <span class="product-thumbnail">
+                                                    <a href="#"><img
+                                                        src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
+                                                        width="200px" alt="cart-product-1"></a>
+                                                    </span>
+                                                    <span class="product-detail">
+                                                        <a href="#"><h5>{{ $book->title }}</h5></a>
+                                                        <span><strong>Author:</strong> {{ $book->author }}</span>
+                                                        <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                                                        <span><strong>Ano:</strong> {{ $book->year }}</span>
+                                                        <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
+
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td data-title="action" class="product-action">
+                                                <div class="dropdown">
+                                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
+                                                    <ul class="dropdown-menu">
+
+                                                        <li><a href="{{ route('read', ['book'=> $book->id]) }}">Já Lido</a></li>
+                                                        <li><a href="{{ route('reading',['book'=> $book->id]) }}">Lendo</a></li>
+                                                    </ul>
+                                                </div>
+
+                                            </td>
+                                            <td class="product-price">
+                                                <p>Sua avaliação foi {{ Auth::user()->countRating()}} <br>
+                                                   Para ver suas postagens <a href="#"> Clique aqui </a></p>
+                                               </td>
+                                               <td class="product-remove">
+                                                Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove_toRead', ['book'=> $book->id])}}">Remover</a>
+                                            </td>
+                                        </tr>
+
+                                        @endif
+                                        @endforeach
+                                        {{-- Encerrando a tabela que mostra os livros do usuario --}}
+                                    </tbody>
+                                </table>
+                            </form>
                         </div>
-                    </div><!-- .entry-content -->
+                    </div>
+
+
+                    {{-- SESSÃO LIDOS --}}
+
+                    <div id="sectionC" class="tab-pane fade in">
+                       <table class="table table-bordered shop_table cart">
+                        <thead>
+                            <tr>
+                                <th class="product-name">&nbsp;</th>
+                                <th class="product-name">Obras</th>
+                                <th class="product-quantity">Ações</th>
+                                <th class="product-price">Notas</th>
+                                <th class="product-subtotal">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach($books as $book) 
+                            @if(Auth::user()->read($book->id))
+                            <tr class="cart_item">
+                                <td data-title="cbox" class="product-cbox">
+                                    <span>
+                                        <input type="checkbox" id="cbox3" value="first_checkbox">
+                                    </span>
+                                </td>
+                                <td data-title="Product" class="product-name">
+                                    <div class="row">
+                                        <span class="product-thumbnail">
+                                            <a href="#"><img
+                                                src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
+                                                width="200px" alt="cart-product-1"></a>
+                                            </span>
+                                            <span class="product-detail">
+                                                <a href="#"><h5>{{ $book->title }}</h5></a>
+                                                <span><strong>Author:</strong> {{ $book->author }}</span>
+                                                <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                                                <span><strong>Ano:</strong> {{ $book->year }}</span>
+                                                <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
+
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td data-title="action" class="product-action">
+                                        <div class="dropdown">
+                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
+                                            <ul class="dropdown-menu">
+
+                                                <li><a href="{{ route('favoritar',['book'=> $book->id]) }}">Favoritar</a></li>
+                                                <li><a href="{{ route('rating', ['book'=> $book->id]) }}">Avaliação</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </td>
+                                    <td class="product-price">
+                                        <p>Sua avaliação foi {{ Auth::user()->countRating()}} <br>
+                                           Para ver suas postagens <a href="#"> Clique aqui </a></p>
+                                       </td>
+                                       <td class="product-remove">
+                                        Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove_read', ['book'=> $book->id])}}">Remover</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @endif
+                        @endforeach
+                    </div>
+
+                    {{--SESSÃO FAVORITOS --}}
+
+                    <div id="sectionD" class="tab-pane fade in">
+                        <table class="table table-bordered shop_table cart">
+                            <thead>
+                                <tr>
+                                    <th class="product-name">&nbsp;</th>
+                                    <th class="product-name">Obras</th>
+                                    <th class="product-quantity">Ações</th>
+                                    <th class="product-price">Notas</th>
+                                    <th class="product-subtotal">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach($books as $book) 
+                                @if(Auth::user()->favorito($book->id))
+                                <tr class="cart_item">
+                                    <td data-title="cbox" class="product-cbox">
+                                        <span>
+                                            <input type="checkbox" id="cbox3" value="first_checkbox">
+                                        </span>
+                                    </td>
+                                    <td data-title="Product" class="product-name">
+                                        <div class="row">
+                                            <span class="product-thumbnail">
+                                                <a href="#"><img
+                                                    src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
+                                                    width="200px" alt="cart-product-1"></a>
+                                                </span>
+                                                <span class="product-detail">
+                                                    <a href="#"><h5>{{ $book->title }}</h5></a>
+                                                    <span><strong>Author:</strong> {{ $book->author }}</span>
+                                                    <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                                                    <span><strong>Ano:</strong> {{ $book->year }}</span>
+                                                    <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
+
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td data-title="action" class="product-action">
+                                            <div class="dropdown">
+                                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ route('rating', ['book'=> $book->id]) }}">Avaliação</a></li>
+                                                </ul>
+                                            </div>
+
+                                        </td>
+                                        <td class="product-price">
+                                            <p>Sua avaliação foi {{ Auth::user()->countRating()}} <br>
+                                               Para ver suas postagens <a href="#"> Clique aqui </a></p>
+                                           </td>
+                                           <td class="product-remove">
+                                            Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove_favorito', ['book'=> $book->id])}}">Remover</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            @endif
+                            @endforeach
+                    </div>
+
+                    {{--SESSÃO LENDO --}}
+                    <div id="sectionE" class="tab-pane fade in">
+                        <table class="table table-bordered shop_table cart">
+                            <thead>
+                                <tr>
+                                    <th class="product-name">&nbsp;</th>
+                                    <th class="product-name">Obras</th>
+                                    <th class="product-quantity">Ações</th>
+                                    <th class="product-price">Notas</th>
+                                    <th class="product-subtotal">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach($books as $book) 
+                                @if(Auth::user()->reading($book->id))
+                                <tr class="cart_item">
+                                    <td data-title="cbox" class="product-cbox">
+                                        <span>
+                                            <input type="checkbox" id="cbox3" value="first_checkbox">
+                                        </span>
+                                    </td>
+                                    <td data-title="Product" class="product-name">
+                                        <div class="row">
+                                            <span class="product-thumbnail">
+                                                <a href="#"><img
+                                                    src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"
+                                                    width="200px" alt="cart-product-1"></a>
+                                                </span>
+                                                <span class="product-detail">
+                                                    <a href="#"><h5>{{ $book->title }}</h5></a>
+                                                    <span><strong>Author:</strong> {{ $book->author }}</span>
+                                                    <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                                                    <span><strong>Ano:</strong> {{ $book->year }}</span>
+                                                    <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
+
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td data-title="action" class="product-action">
+                                            <div class="dropdown">
+                                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
+                                                <ul class="dropdown-menu">
+
+                                                    <li><a href="#">Favoritar</a></li>
+                                                    <li><a href="#">Avaliação</a></li>
+                                                </ul>
+                                            </div>
+
+                                        </td>
+                                        <td class="product-price">
+                                            <p>Sua avaliação foi {{ Auth::user()->countRating()}} <br>
+                                               Para ver suas postagens <a href="#"> Clique aqui </a></p>
+                                           </td>
+                                           <td class="product-remove">
+                                            Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove_reading', ['book'=> $book->id])}}">Remover</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            @endif
+                            @endforeach
+                    </div>
+                    </div>
                 </div>
-            </div>
+            </div><!-- .entry-content -->
         </div>
     </div>
+</div>
+</div>
 </div>
 </main>
 </div>
 </div>
-<!-- End: Cart Section -->
 
-<!-- Start: Social Network -->
-
-<!-- End: Social Network -->
-
-<!-- Start: Footer -->
 
 <!-- jQuery Latest Version 1.x -->
 <script type="text/javascript" src="{{ asset('assets/jslibrary/jquery-1.12.4.min.js') }}"></script>

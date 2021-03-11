@@ -67,6 +67,15 @@ class User extends Authenticatable
          $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'read'=>1])->count();
         return $has > 0 ? true : false;
     }
+    public function reading($book_id){
+         $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'reading'=>1])->count();
+        return $has > 0 ? true : false;
+    }
+
+    public function favorito($book_id){
+          $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'left'=>1])->count();
+        return $has > 0 ? true : false;
+    }
 
 
 
@@ -88,6 +97,25 @@ class User extends Authenticatable
         $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'read'=>1])->count();
         return $has;
     }
+    public function countReading(){
+       $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'reading'=>1])->count();
+        return $has;
+    }
+
+
+    public function countRating(){
+       $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id])->get('rating');
+
+       
+        return $has;
+    }
+    public function countFavorito(){
+       $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'left'=>1])->count();
+        return $has;
+    }
+    
+
+
 
 
 }

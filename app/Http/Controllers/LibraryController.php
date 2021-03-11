@@ -92,5 +92,35 @@ class LibraryController extends Controller
 		return redirect()->route('library', ['user' => Auth::user()->id]);
 	}
 
+	public function reading(Book $book) {
+		DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['reading' =>1]);
+		return redirect()->route('library', ['user' => Auth::user()->id]);
+	}
+	public function remove_reading(Book $book) {
+		DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['reading' =>0]);
+		return redirect()->route('library', ['user' => Auth::user()->id]);
+	}
+
+	public function rating(Book $book){
+		return view('rating', ['book'=>$book]);
+	}
+
+	public function update_rating(Book $book, Request $request){
+
+		DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['rating' => $request->rating]);
+		return redirect()->route('library', ['user' => Auth::user()->id]);
+	}
+
+	public function favorito(Book $book) {
+		DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['left' => 1]);
+		return redirect()->route('library', ['user' => Auth::user()->id]);
+	}
+
+	public function remove_favorito(Book $book){
+		DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['left' => 0]);
+		return redirect()->route('library', ['user' => Auth::user()->id]);
+	}
+
+
 
 }
