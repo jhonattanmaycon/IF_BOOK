@@ -45,76 +45,64 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function books()
-    {
+    public function books(){
         return $this->belongsToMany(Book::class, 'users_books', 'user_id', 'book_id');
     }
 
     public function exist($book_id){
-        $has = $this->books()->where(['book_id'=>$book_id, 'has'=>1])->count();
+
+        $has = $this->books()->where(['book_id'=> $book_id,  'has'=>1])->count();
+
         return $has > 0 ? true : false;
     }
 
     public function hasBook($book_id){
         $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'has'=>1])->count();
+
         return $has > 0 ? true : false;
     }
-    public function toRead($book_id){
-        $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'toRead'=>1])->count();
-        return $has > 0 ? true : false;
-    }
-    public function read($book_id){
-         $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'read'=>1])->count();
-        return $has > 0 ? true : false;
-    }
-    public function reading($book_id){
-         $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'reading'=>1])->count();
+ 
+    public function toReadBook($book_id){
+        $has = DB::table('users_books')->where(['book_id'=>$book_id, 'toRead'=>1])->count();
+       //$has = $this->books()->where('book_id',$book_id)->count();
         return $has > 0 ? true : false;
     }
 
-    public function favorito($book_id){
-          $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'left'=>1])->count();
+    public function readBook($book_id){
+        $has = DB::table('users_books')->where(['book_id'=>$book_id, 'read'=>1])->count();
+       //$has = $this->books()->where('book_id',$book_id)->count();
         return $has > 0 ? true : false;
     }
 
-
-
-
-
-
-    // CONTAGENS
-    
-
-    public function countBooks(){
-        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id,'has'=>1])->count();
-        return $has;
+    public function favBook($book_id){
+        $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'rating'=>1])->count();
+       //alterar a variavel rating para fav
+        return $has > 0 ? true : false;
     }
-     public function countToRead(){
-        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'toRead'=>1])->count();
-        return $has;
-    }
-     public function countRead(){
-        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'read'=>1])->count();
-        return $has;
-    }
-    public function countReading(){
-       $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'reading'=>1])->count();
+
+    public function contHas(){
+        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'has' =>1])->count();
+      
         return $has;
     }
 
-
-    public function countRating(){
-       $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id])->get('rating');
-
-       
+    public function contRead(){
+        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id,'read'=>1])->count();
+      
         return $has;
     }
-    public function countFavorito(){
-       $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'left'=>1])->count();
+
+    public function contToRead(){
+        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id,'toRead'=>1])->count();
+      
         return $has;
     }
-    
 
+    public function contFav(){
+        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id,'rating'=>1])->count();
+       //alterar a variavel rating para fav
+        return $has;
+    }
 
 
 

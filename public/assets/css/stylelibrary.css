@@ -7029,7 +7029,7 @@ summary {
   color: #3e3e3e;
 }
 section {
-  padding: 100px 0;
+  padding: 40px 0;
 }
 @media (max-width: 991px) {
   section {
@@ -8647,7 +8647,8 @@ a:focus {
   border-color: #e84500;
 }
 .page-banner .breadcrumb {
-  background-color: #fff;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.301);
   border-radius: 0;
   bottom: 0;
   display: table;
@@ -13606,7 +13607,7 @@ a:focus {
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 400px;
+  min-height: 260px;
   position: relative;
   text-align: center;
 }
@@ -13652,7 +13653,7 @@ a:focus {
 }
 .page-banner .banner-header {
   display: block;
-  padding-top: 110px;
+  padding-top: 20px;
   vertical-align: middle;
   position: relative;
   z-index: 10;
@@ -16607,7 +16608,9 @@ a:focus {
   -moz-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
   box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
 }
+
 .book-list-icon {
+  text-align: center; /* alinhando o i*/
   background-image: url("images/book-list-icons.png");
   background-repeat: no-repeat;
   height: 55px;
