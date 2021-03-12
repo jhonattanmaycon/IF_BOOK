@@ -73,6 +73,12 @@ Route::get('/library_removeRead/{book}', [LibraryController::class,'removeRead']
 Route::get('/library_removeFav/{book}', [LibraryController::class,'removeFav']) 
 	->name('removeFav');
 
+Route::get('/tiny', function() {
+		return view('form-post');
+	});
+
+
+
 
 
 // Rota para o controle do match
