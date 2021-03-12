@@ -299,6 +299,12 @@ section {
   color: #173b6c;
 }
 
+.add-post {
+ position: fixed;
+ margin-left: 30%;
+ margin-top: 0%
+}
+
 .section-title h2::after {
   content: '';
   position: absolute;

@@ -50,16 +50,18 @@ class User extends Authenticatable
     }
 
     public function exist($book_id){
+
         $has = $this->books()->where(['book_id'=> $book_id,  'has'=>1])->count();
+
         return $has > 0 ? true : false;
     }
 
     public function hasBook($book_id){
         $has = DB::table('users_books')->where(['book_id'=>$book_id, 'user_id'=> Auth::user()->id, 'has'=>1])->count();
-       //$has = $this->books()->where('book_id',$book_id)->count();
+
         return $has > 0 ? true : false;
     }
-
+ 
     public function toReadBook($book_id){
         $has = DB::table('users_books')->where(['book_id'=>$book_id, 'toRead'=>1])->count();
        //$has = $this->books()->where('book_id',$book_id)->count();
@@ -101,6 +103,7 @@ class User extends Authenticatable
        //alterar a variavel rating para fav
         return $has;
     }
+
 
 
 }

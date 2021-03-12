@@ -50,10 +50,12 @@ class LibraryController extends Controller
 				'rating' => 1
 			]);
 			return redirect()->route('library', ['user' => Auth::user()->id]);
+		} 
+		else {
+			DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['has' =>1]);
+			return redirect()->route('library', ['user' => Auth::user()->id]);
 		}
-		
-		DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['has' =>1]);
-		return redirect()->route('library', ['user' => Auth::user()->id]);
+
 	}
 
 
@@ -100,8 +102,8 @@ class LibraryController extends Controller
 	
 	}
 
-	public function paraFav(Book $book){
 
+	public function paraFav(Book $book){
 		DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['rating' =>1]);
  		//alterar a variavel rating para fav
 		return redirect()->route('library', ['user' => Auth::user()->id]);

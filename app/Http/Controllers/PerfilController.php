@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PerfilController extends Controller
 {
     public function perfil() {
     	$user = Auth::user();
-;    	return view('perfil.home', ['user'=>$user]);
+      $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->get();
+;    	return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
     }
 
     public function edit($id) {
