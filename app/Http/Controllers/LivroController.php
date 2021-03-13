@@ -15,7 +15,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $book = Book::all();
+        $book = Book::paginate(6);
         return view('book.index', ['book'=>$book]);
     }
 

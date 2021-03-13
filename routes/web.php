@@ -99,6 +99,9 @@ Route::get('/library_removeFav/{book}', [LibraryController::class,'removeFav'])
 
 Route::resource('posts', PostController::class);
 
+Route::get('/admin', function() {
+    return view('admin.index');
+});
 
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])
