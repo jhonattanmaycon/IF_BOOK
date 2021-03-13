@@ -202,8 +202,8 @@
             <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
             <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
           </ul>
-          <button class="btn" onclick="document.getElementById('form-destroy').submit(); return false;"> Excluir Post</button>
-          <form action="{{ route('posts.destroy',['post'=>$post->id]) }}" method="post" id="form-destroy">
+          <button class="btn" onclick="document.getElementById( {{'"' .'form-' . $post->id . '"'}} ).submit(); return false;"> Excluir Post</button>
+          <form action="{{ route('posts.destroy',['post'=>$post->id]) }}" method="post" id="{{'form-' . $post->id}}">
             @csrf
             @method('delete')
           </form>

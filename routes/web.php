@@ -10,6 +10,7 @@ use App\Http\Controllers\{
 	HomeController,
 	LivroController,
 	PostController,
+	AdminController,
 	
 };
 
@@ -99,9 +100,12 @@ Route::get('/library_removeFav/{book}', [LibraryController::class,'removeFav'])
 
 Route::resource('posts', PostController::class);
 
-Route::get('/admin', function() {
-    return view('admin.index');
-})->name('admin');
+
+// ADMIN
+
+Route::get('/admin',  [AdminController::class,'index'])->name('admin');
+
+Route::get('/admin/show_users', [AdminController::class,'show_users'])->name('admin_showUsers');
 
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])
