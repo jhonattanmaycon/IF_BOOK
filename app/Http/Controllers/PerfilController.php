@@ -8,25 +8,33 @@ use App\Models\Post;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 
 class PerfilController extends Controller
 {
     public function perfil() {
-
-      
-
     	$user = Auth::user();
       $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->get();
 ;    	return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
     }
 
     public function edit($id) {
+
   		$user = User::find($id);
-        if($user) {
-            return view('perfil.edit' , ['user'=>$user]);
-        } 
-        return redirect()->route('perfil.home');
+
+      if(Gate::forUser($user)->allows('update-perfil', $user)) {
+         return view('perfil.edit' , ['user'=>$user]);
+      }
+      else{
+        return redirect()->back();
+      }
+      
+      // if(!Gate::allows('update-perfil', $user)){
+      //     return redirect()->back();
+      //   }else{
+      //     return view('perfil.edit' , ['user'=>$user]);
+      //   }
+       
   	}
 
 
