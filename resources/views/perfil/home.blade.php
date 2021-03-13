@@ -1,5 +1,10 @@
 @extends('layouts.ifbook')
 
+@section('admin')
+  @can('admin-acess', $user)
+   <li><a href="{{ route('admin') }}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Admin</span></a></li>
+   @endcan
+@endsection
 @section('main-content')
 
 

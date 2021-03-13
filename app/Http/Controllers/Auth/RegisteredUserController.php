@@ -38,14 +38,16 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
             'city' => 'nullable|string|max:20',
             'years' => 'nullable|interger|max:3',
+            'roles' => 'string|max:10',
         ]);
-
+      
         Auth::login($user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'city' => $request->city,
             'years' => $request->year,
+            'roles'=> 'common',
         ]));
 
         event(new Registered($user));

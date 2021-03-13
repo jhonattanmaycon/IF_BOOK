@@ -105,6 +105,9 @@ Route::get('/tiny', function() {
 
 Route::resource('posts', PostController::class);
 
+Route::get('/admin', function() {
+    return view('admin.index');
+})->name('admin');
 
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])

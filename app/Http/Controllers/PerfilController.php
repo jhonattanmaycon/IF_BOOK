@@ -8,10 +8,14 @@ use App\Models\Post;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Gate;
 
 class PerfilController extends Controller
 {
     public function perfil() {
+
+      
+
     	$user = Auth::user();
       $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->get();
 ;    	return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
