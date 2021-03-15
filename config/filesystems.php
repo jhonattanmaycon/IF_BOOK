@@ -69,6 +69,7 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('capa_imagem') => storage_path('app/public/imgcapas'),
         public_path('foto_perfil') => storage_path('app/public/imgphotos'),
+        public_path('image_post') => storage_path('app/public/imgposts'),
 
     ],
 

@@ -4,22 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 
 class PerfilController extends Controller
 {
     public function perfil() {
+
     	$user = Auth::user();
-;    	return view('perfil.home', ['user'=>$user]);
+      $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
+;    	return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
     }
 
     public function edit($id) {
+
   		$user = User::find($id);
-        if($user) {
-            return view('perfil.edit' , ['user'=>$user]);
-        } 
-        return redirect()->route('perfil.home');
+
+      if(Gate::forUser($user)->allows('update-perfil', $user)) {
+         return view('perfil.edit' , ['user'=>$user]);
+      }
+      else{
+        return redirect()->back();
+      }
+      
+      
+       
   	}
 
 
