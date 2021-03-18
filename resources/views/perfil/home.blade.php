@@ -30,7 +30,11 @@
 
                 </div>
                 @unless($user->id == Auth::user()->id)
-                <button class="btn btn-primary">Seguir</button>
+                 @if($user->isFollowerBy(Auth::id()))
+                   <a href="{{ route('unfollow', ['id'=> $user->id]) }}" title="Parar de seguir"><button class="btn btn-primary">Seguido</button></a>
+                   @else
+                   <a href="{{ route('follow', ['id'=> $user->id]) }}"><button class="btn btn-primary">Seguir</button></a>
+                  @endif
                 <button class="btn btn-outline-primary">Mensagem</button>
                 @endunless
                 @unless($user->id != Auth::user()->id)

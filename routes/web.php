@@ -29,7 +29,7 @@ Route::get('/', function() {
 	return redirect()->route('feed');
 })->middleware(['auth']);
 
-Route::get('/perfil', [PerfilController::class, 'perfil'])
+Route::get('/perfil/{id}', [PerfilController::class, 'perfil'])
 ->middleware(['auth'])	
 ->name('perfil.home');
 
@@ -94,10 +94,14 @@ Route::get('/library_removeRead/{book}', [LibraryController::class,'removeRead']
 Route::get('/library_removeFav/{book}', [LibraryController::class,'removeFav']) 
 	->name('removeFav');
 
-Route::get('/tiny', function() {
-		return view('form-post');
-	});
 
+// FOLLOWS
+
+
+Route::get('/follow/{id}', [PerfilController::class, 'follow'])
+->name('follow');
+Route::get('/unfollow/{id}', [PerfilController::class, 'unfollow'])
+->name('unfollow');
 
 
 

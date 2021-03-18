@@ -12,50 +12,69 @@ use Illuminate\Support\Facades\Gate;
 
 class PerfilController extends Controller
 {
-    public function perfil() {
+  public function perfil($id) {
 
-    	$user = Auth::user();
-      $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
-;    	return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
-    }
+   $user = User::find($id);
+   $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
+   ;    	return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
+ }
 
-    public function edit($id) {
+ public function edit($id) {
 
-  		$user = User::find($id);
+  $user = User::find($id);
 
-      if(Gate::forUser($user)->allows('update-perfil', $user)) {
-         return view('perfil.edit' , ['user'=>$user]);
-      }
-      else{
-        return redirect()->back();
-      }
-      
-      
-       
-  	}
+  if(Gate::forUser($user)->allows('update-perfil', $user)) {
+   return view('perfil.edit' , ['user'=>$user]);
+ }
+ else{
+  return redirect()->back();
+}
 
 
-  	public function update (Request $request, $id){
+
+}
+
+
+public function update (Request $request, $id){
 
       // $user = new User();
-      $data = $request->all();
-  		$user = User::find($id);
+  $data = $request->all();
+  $user = User::find($id);
 
-  		$user->name = $request->post('name');
-      $user->city = $request->post('cidade');
-      $user->years = $request->post('idade');
+  $user->name = $request->post('name');
+  $user->city = $request->post('cidade');
+  $user->years = $request->post('idade');
 
-      if(isset($request->photo)){
+  if(isset($request->photo)){
 
-      $nameFile = Str::camel($user->name) . $id .".". $request->photo->extension();
+    $nameFile = Str::camel($user->name) . $id .".". $request->photo->extension();
 
-        $request->photo->storeAs('imgphotos', $nameFile);
-        
-        $user->photo = $nameFile;
-      }
+    $request->photo->storeAs('imgphotos', $nameFile);
 
-  		$user->save();
+    $user->photo = $nameFile;
+  }
 
-  		return redirect()->route('perfil.home');
-  	}
+  $user->save();
+
+  return redirect()->route('perfil.home');
+}
+
+
+  public function follow($id){
+    DB::table('users_followers')->insert([
+       'follower' => Auth::id(),
+       'followed' => $id,
+      ]);
+    return redirect()->back();
+
+  }
+  public function unfollow($id){
+    DB::table('users_followers')->where([
+       'follower' => Auth::id(),
+       'followed' => $id,
+      ])->delete();
+    return redirect()->back();
+
+  }
+  
 }

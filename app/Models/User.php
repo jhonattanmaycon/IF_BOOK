@@ -104,7 +104,10 @@ class User extends Authenticatable
         return $has;
     }
 
-
+    public function isFollowerBy($id){
+         $has = DB::table('users_followers')->where(['follower'=> $id, 'followed' => $this->id])->count();
+          return $has;
+    }
 
 
    
