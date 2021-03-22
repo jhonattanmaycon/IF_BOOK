@@ -7,7 +7,11 @@
 @endsection
 @section('main-content')
 
-
+<style>
+  body{
+    background-color: black
+  }
+</style>
 <section>
 
 
@@ -188,26 +192,40 @@
 </section>
 
 <main>
+  <div class="container">
   <div class="row">
-
+    <hr>
     @foreach($posts as $post)
+
+
     <div class="col-sm-4">
 
+ 
       <div class="gallery">
 
         <div class="gallery-item" tabindex="0">
-         <img src="{{asset('image_post/' . $post->image)}}" class="gallery-image" alt="" width="300px" height="300px">
+          {{-- decoding="auto" style="object-fit: cover;" sizes="293px" --}}
+
+         <img  src="{{asset('image_post/' . $post->image)}}" class="gallery-image" alt="">
+         <a href="#"> <i class="bi bi-heart-fill"> 100 &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> 50 </i> </a>
+
+      
+
+         {{-- 
          <div class="gallery-item-info">
+        
           <ul>
             <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
             <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
           </ul>
           <button class="btn" onclick="document.getElementById( {{'"' .'form-' . $post->id . '"'}} ).submit(); return false;"> Excluir Post</button>
+        
           <form action="{{ route('posts.destroy',['post'=>$post->id]) }}" method="post" id="{{'form-' . $post->id}}">
             @csrf
             @method('delete')
           </form>
         </div>
+        --}}
       </div>
 
     </div>
