@@ -9,7 +9,7 @@
 
 <style>
   body{
-    background-color: black
+    background-color: #030911;
   }
 </style>
 <section>
@@ -17,9 +17,10 @@
 
   <div class="container">
 
+
     <div class="row gutters-sm">
       <div class="col-md-6 mb-3 mt-3" >
-        <div class="card">
+        <div class="card p-3 mb-2 bg-dark text-white p-white ">
           <div class="card-body " >
             <div class="d-flex flex-column align-items-center text-center " >
               <img src="{{ asset('foto_perfil/' . $user->photo) }}" alt="Admin" class="rounded-circle" width="90px">
@@ -38,7 +39,7 @@
                 <button class="btn btn-outline-primary">Mensagem</button>
                 @endunless
                 @unless($user->id != Auth::user()->id)
-                <a href="{{ route('perfil.edit', ['id'=>$user->id]) }}"><button class="btn btn-primary">Editar Perfil</button></a>
+                <a href="{{ route('perfil.edit', ['id'=>$user->id]) }}"><button class="btn btn-light">Editar Perfil</button></a>
                 @endunless
               </div>
             </div>
@@ -48,7 +49,7 @@
 
       <div class="col-md-6 mb-3 mt-3" >
 
-        <div class="card">
+        <div class="card bg-dark text-white p-white ">
           <div class="card-body" >
             <div class="row">
               <div class="col-sm  align-items-center text-center">
@@ -65,7 +66,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card bg-dark text-white p-white ">
           <div class="card-body " >
             <div class="d-flex flex-column align-items-center text-center " >
               <div class="">
@@ -76,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card bg-dark text-white p-white ">
           <div class="card-body " >
             <div class="d-flex flex-column align-items-center text-center " >
               <div class="">
@@ -100,86 +101,56 @@
       
       <div class="row gutters-sm">
         <div class="col-sm-4 mb-3 mt-3">
-          <div class="card h-100">
+          <div class="card h-100 bg-dark text-white p-white">
             <div class="card-body">
-              <h6 class="d-flex align-items-center mb-3">Top 5 Livros</h6>
+              <h6 class=" d-flex align-items-center mb-3">Top 5 Livros</h6>
               <small>Romance</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Política</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Filosofia</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Ficção</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Religioso</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
             </div>
           </div>
         </div>
 
         <div class="col-sm-4 mb-3 mt-3">
-          <div class="card h-100">
+          <div class="card h-100 bg-dark text-white p-white ">
             <div class="card-body">
               <h6 class="d-flex align-items-center mb-3">Top 5 Músicas</h6>
               <small>O extraordinário</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>No tempo Dele</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Eu vou voltar</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Tropicalia</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Low Fi</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
             </div>
           </div>
         </div>
 
 
         <div class="col-sm-4 mb-3 mt-3">
-          <div class="card h-100">
+          <div class="card h-100 bg-dark text-white p-white ">
             <div class="card-body">
               <h6 class="d-flex align-items-center mb-3">Top 5 Filmes</h6>
               <small>As branquelas</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Efeito Borboleta</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>O Lorax</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Star Wars: O despertar</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
               <small>Deus não está morto 2</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              <hr>
             </div>
           </div>
         </div>

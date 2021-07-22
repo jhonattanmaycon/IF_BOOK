@@ -21,7 +21,7 @@
 		<div class="page-content">
 			<div class="form-v8-content">
 				<div class="form-left">
-					<img src="{{asset('assets\img\form-v8.jpg')}}" alt="form">
+					<img src="{{asset('assets\img\logo.png')}}" alt="form">
 				</div>
 				<div class="form-right">
 					<div class="tab">

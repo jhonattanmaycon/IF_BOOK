@@ -63,14 +63,15 @@ class User extends Authenticatable
     }
  
     public function toReadBook($book_id){
-        $has = DB::table('users_books')->where(['book_id'=>$book_id, 'toRead'=>1])->count();
+        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id,'book_id'=>$book_id, 'toRead'=>1])->count();
+        //precisa do Auth ué
        //$has = $this->books()->where('book_id',$book_id)->count();
         return $has > 0 ? true : false;
     }
 
     public function readBook($book_id){
-        $has = DB::table('users_books')->where(['book_id'=>$book_id, 'read'=>1])->count();
-       //$has = $this->books()->where('book_id',$book_id)->count();
+        $has = DB::table('users_books')->where(['user_id'=> Auth::user()->id, 'book_id'=>$book_id, 'read'=>1])->count();
+       //precisa do Auth
         return $has > 0 ? true : false;
     }
 

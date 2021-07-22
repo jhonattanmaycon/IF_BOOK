@@ -48,8 +48,9 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <a href=""><img src="{{asset('foto_perfil/' . Auth::user()->photo)}} " alt="" class="img-fluid rounded-circle">
-          </a>
+        {{--<a href=""><img src="{{asset('foto_perfil/' . Auth::user()->photo)}} " alt="" class="img-fluid rounded-circle">
+        </a>
+        --}}
         <h1 class="text-light">
           <a href="index.html">  
             {{Auth::user()->name}}

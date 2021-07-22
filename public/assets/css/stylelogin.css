@@ -1,22 +1,23 @@
 body {
 	margin:  0;
-
+	overflow: hidden;
 }
-
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #5b719b inset;
+
+
 }
 
 /* Cor do texto do autocomplete */
 input:-webkit-autofill {
     -webkit-text-fill-color: white !important;
 }
-.page-content {
+.page-content{
 	width: 100%;
 	margin:  0 auto;
-	background-image: -moz-linear-gradient( 136deg, rgb(0, 17, 253) 0%, rgb(42,245,152) 100%);
-    background-image: -webkit-linear-gradient( 136deg, rgb(0,158,253) 0%, rgb(42,245,152) 100%);
-    background-image: -ms-linear-gradient( 136deg, rgb(0,158,253) 0%, rgb(42,245,152) 100%);
+	background-image: -moz-linear-gradient( 136deg, rgb(4, 0, 8) 0%, #262262 100%);
+    background-image: -webkit-linear-gradient( 136deg, rgb(4, 0, 8) 0%, #262262 100%);
+    background-image: -ms-linear-gradient( 136deg, rgb(4, 0, 8) 0%, rgb(39, 34, 98) 100%);
 	display: flex;
 	display: -webkit-flex;
 	justify-content: center;
@@ -30,9 +31,8 @@ input:-webkit-autofill {
 	-moz-align-items: center;
 	-webkit-align-items: center;
 }
-.form-v8-content  {
-
-	background: #fff;
+.form-v8-content{
+	background:#3d5983;
 	width: 937px;
 	border-radius: 8px;
 	-o-border-radius: 8px;
@@ -44,7 +44,7 @@ input:-webkit-autofill {
 	-ms-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 	-webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	margin: 120px 0;
+	margin: 125px 0;
 	font-family: 'Source Sans Pro', sans-serif;
 	color: #fff;
 	position: relative;
@@ -52,13 +52,16 @@ input:-webkit-autofill {
 	display: -webkit-flex;
 }
 .form-v8-content .form-left {
+
 	margin-bottom: -4px;
 }
+
 .form-v8-content .form-left img {
-	height: 99.4%;
+
 	border-top-left-radius: 8px;
 	border-bottom-left-radius: 8px;
 }
+
 .form-v8-content .form-right {
     padding: 30px 0;
 	position: relative;
@@ -222,6 +225,9 @@ input:-webkit-autofill {
 }
 /* Responsive */
 @media screen and (max-width: 991px) {
+	body{
+		overflow: visible;
+	}
 	.form-v8-content {
 		margin: 180px 20px;
 		flex-direction:  column;
@@ -252,7 +258,6 @@ input:-webkit-autofill {
 }
 
 @media screen and (max-width: 325px) {
-
 	.form-v8-content .tab {
 		flex-direction: column;
 		-o-flex-direction: column;
