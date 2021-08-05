@@ -9,14 +9,36 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Gate;
+use PhpParser\Node\Expr\FuncCall;
 
 class PerfilController extends Controller
 {
-    public function perfil() {
 
+  public function store(Request $request)
+  {
+      $request->validate([
+          'nome' => 'required|min:2|max:15',
+          'bio' => 'max:30',
+          'music' => 'max:20',
+          'hobbie' => 'max:20',
+          'city' => 'required|min:3|max:15',
+          'years' => 'required|max:3',
+      ]);
+          
+    }
+
+
+
+
+    public function perfil() {
     	$user = Auth::user();
       $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
-;    	return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
+      return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
+    }
+
+    public function perfilview(User $user) {
+      $posts = DB::table('posts')->where(['user_id'=>$user->id])->OrderBy('created_at', 'DESC')->get();
+      return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
     }
 
     public function edit($id) {
@@ -41,9 +63,25 @@ class PerfilController extends Controller
       $data = $request->all();
   		$user = User::find($id);
 
-  		$user->name = $request->post('name');
+  		$user->realname = $request->post('name');
       $user->city = $request->post('cidade');
       $user->years = $request->post('idade');
+
+      $user->bio = $request->post('bio');
+      $user->hobbie = $request->post('hobbie');
+      $user->music = $request->post('music');
+
+      $user->onemusic = $request->post('onemusic');
+      $user->onebook = $request->post('onebook');
+      $user->onemovie = $request->post('onemovie');
+      
+      $user->twomusic = $request->post('twomusic');
+      $user->twobook = $request->post('twobook');
+      $user->twomovie = $request->post('twomovie');
+
+      $user->threemusic = $request->post('threemusic');
+      $user->threebook = $request->post('threebook');
+      $user->threemovie = $request->post('threemovie');
 
       if(isset($request->photo)){
 

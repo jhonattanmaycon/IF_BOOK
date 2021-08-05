@@ -15,7 +15,26 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->string('realname')->nullable();
+            $table->integer('followers')->default(0);
+            $table->integer('follows')->default(0);
+            $table->string('bio')->nullable();
+            $table->string('music')->nullable();
+            $table->string('hobbie')->nullable();
+
+            $table->string('onebook')->nullable();
+            $table->string('onemusic')->nullable();
+            $table->string('onemovie')->nullable();
+
+            $table->string('twobook')->nullable();
+            $table->string('twomusic')->nullable();
+            $table->string('twomovie')->nullable();
+
+            $table->string('threebook')->nullable();
+            $table->string('threemusic')->nullable();
+            $table->string('threemovie')->nullable();
+
             $table->string('city')->nullable();
             $table->integer('years')->nullable();
             $table->string('roles')->default('common');

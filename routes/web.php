@@ -33,6 +33,10 @@ Route::get('/perfil', [PerfilController::class, 'perfil'])
 ->middleware(['auth'])	
 ->name('perfil.home');
 
+Route::get('/perfil/{user}', [PerfilController::class, 'perfilview'])
+->middleware(['auth'])	
+->name('perfil.explore');
+
 // Rota para controlar feed
 Route::get('/feed', [FeedController::class, 'feed'])
 ->middleware(['auth'])

@@ -23,11 +23,11 @@
         <div class="card p-3 mb-2 bg-dark text-white p-white ">
           <div class="card-body " >
             <div class="d-flex flex-column align-items-center text-center " >
-              <img src="{{ asset('foto_perfil/' . $user->photo) }}" alt="Admin" class="rounded-circle" width="90px">
+              {{--<img src="{{ asset('foto_perfil/' . $user->photo) }}" alt="Admin" class="rounded-circle" width="90px">--}}
               <div class="mt-3">
-                <h4> {{ $user->name }} </h4>
+                <h4> {{ $user->realname }} </h4>
                 <p class="text-secondary mb-1">{{ $user->city}}, {{$user->years }}</p>
-                <p class="text-muted font-size-sm">"Sua mente atualmente atua ou mente"</p>
+                <p class="text-muted font-size-sm">{{ $user->bio}}</p>
                 <div class="social-links text-center mb-3">
                   <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                   <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -55,11 +55,11 @@
               <div class="col-sm  align-items-center text-center">
                 <h4> Seguidores</h4>
 
-                <p class="text-secondary mb-1">1100</p>
+                <p class="text-secondary mb-1">{{ $user->followers}}</p>
               </div>
               <div class="col-sm  align-items-center text-center">
                 <h4> Seguindo</h4>
-                <p class="text-secondary mb-1">1000</p>
+                <p class="text-secondary mb-1">{{ $user->follows}}</p>
               </div>
               
             </div>
@@ -71,8 +71,7 @@
             <div class="d-flex flex-column align-items-center text-center " >
               <div class="">
                 <h4> Hobbies</h4>
-                <p class="text-secondary mb-1">Natação, Saxofone, História, Paraquedismo</p>
-                <p class="text-secondary mb-1"><a href="#">O que está lendo no momento</a></p>
+                <p class="text-secondary mb-1">{{ $user->hobbie}}</p>
               </div>
             </div>
           </div>
@@ -82,7 +81,7 @@
             <div class="d-flex flex-column align-items-center text-center " >
               <div class="">
                 <h4> Música do momento </h4>
-                <p class="text-secondary mb-1">Metralhadora</p>
+                <p class="text-secondary mb-1">{{ $user->music}}</p>
 
               </div>
             </div>
@@ -103,17 +102,14 @@
         <div class="col-sm-4 mb-3 mt-3">
           <div class="card h-100 bg-dark text-white p-white">
             <div class="card-body">
-              <h6 class=" d-flex align-items-center mb-3">Top 5 Livros</h6>
-              <small>Romance</small>
+              <h6 class=" d-flex align-items-center mb-3">Top 3 Livros</h6>
+              <small>{{ $user->onebook}}</small>
               <hr>
-              <small>Política</small>
+              <small>{{ $user->twobook}}</small>
               <hr>
-              <small>Filosofia</small>
+              <small>{{ $user->threebook}}</small>
               <hr>
-              <small>Ficção</small>
-              <hr>
-              <small>Religioso</small>
-              <hr>
+
             </div>
           </div>
         </div>
@@ -121,16 +117,12 @@
         <div class="col-sm-4 mb-3 mt-3">
           <div class="card h-100 bg-dark text-white p-white ">
             <div class="card-body">
-              <h6 class="d-flex align-items-center mb-3">Top 5 Músicas</h6>
-              <small>O extraordinário</small>
+              <h6 class="d-flex align-items-center mb-3">Top 3 Músicas</h6>
+              <small>{{ $user->onemusic}}</small>
               <hr>
-              <small>No tempo Dele</small>
+              <small>{{ $user->twomusic}}</small>
               <hr>
-              <small>Eu vou voltar</small>
-              <hr>
-              <small>Tropicalia</small>
-              <hr>
-              <small>Low Fi</small>
+              <small>{{ $user->threemusic}}</small>
               <hr>
             </div>
           </div>
@@ -140,16 +132,12 @@
         <div class="col-sm-4 mb-3 mt-3">
           <div class="card h-100 bg-dark text-white p-white ">
             <div class="card-body">
-              <h6 class="d-flex align-items-center mb-3">Top 5 Filmes</h6>
-              <small>As branquelas</small>
+              <h6 class="d-flex align-items-center mb-3">Top 3 Filmes</h6>
+              <small>{{ $user->onemovie}}</small>
               <hr>
-              <small>Efeito Borboleta</small>
+              <small>{{ $user->twomovie}}</small>
               <hr>
-              <small>O Lorax</small>
-              <hr>
-              <small>Star Wars: O despertar</small>
-              <hr>
-              <small>Deus não está morto 2</small>
+              <small>{{ $user->threemovie}}</small>
               <hr>
             </div>
           </div>

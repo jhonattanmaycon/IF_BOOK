@@ -16,6 +16,8 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('image')->nullable();
+            $table->integer('likes')->default(0);
+            $table->integer('views')->default(0);
             $table->string('message')->nullable(); //editor tinymce
             $table->unsignedBigInteger('user_id')->nullable();
 

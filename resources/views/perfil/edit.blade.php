@@ -49,7 +49,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Nome:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="name" type="text" value="{{ $user->name }}">
+              <input class="form-control" name="name" type="text" value="{{ $user->realname }}">
             </div>
           </div>
           <div class="form-group">
@@ -64,6 +64,80 @@
               <input class="form-control" name="idade" type="text" value="{{ $user->years }}">
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Bio:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="bio" type="text" value="{{ $user->bio }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Hobbies:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="hobbie" type="text" value="{{ $user->hobbie }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Musica do Momento:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="music" type="text" value="{{ $user->music }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 1° Musicas:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="onemusic" type="text" value="{{ $user->onemusic }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 2° Musicas:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="twomusic" type="text" value="{{ $user->twomusic }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 3° Musicas:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="threemusic" type="text" value="{{ $user->threemusic }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 1° Livros:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="onebook" type="text" value="{{ $user->onebook }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 2° Livros:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="twobook" type="text" value="{{ $user->twobook }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 3° Livros:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="threebook" type="text" value="{{ $user->threebook }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 1° Filmes:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="onemovie" type="text" value="{{ $user->onemovie }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 2° Filmes:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="twomovie" type="text" value="{{ $user->twomovie }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Top 3° Filmes:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="threemovie" type="text" value="{{ $user->threemovie }}">
+            </div>
+          </div>
+
             <input type="submit" name="submit" value="Salvar Alterações" class="btn btn-primary mt-3">
           </div>
         </form>
