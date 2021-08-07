@@ -13,6 +13,7 @@ use App\Http\Controllers\{
 	AdminController,
 	
 };
+use Illuminate\Database\Eloquent\Model;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,13 @@ Route::get('/perfil', [PerfilController::class, 'perfil'])
 Route::get('/perfil/{user}', [PerfilController::class, 'perfilview'])
 ->middleware(['auth'])	
 ->name('perfil.explore');
+
+
+Route::get('/follow/{user_2}', [PerfilController::class, 'friends'])
+->middleware(['auth'])	
+->name('follow');
+
+
 
 // Rota para controlar feed
 Route::get('/feed', [FeedController::class, 'feed'])
@@ -121,6 +129,10 @@ Route::get('/admin/show_users', [AdminController::class,'show_users'])->name('ad
 Route::get('/match',[MatchController::class,'match'])
 ->middleware(['auth'])
 ->name('match');
+
+Route::get('/match/explorer',[MatchController::class,'explorer'])
+->middleware(['auth'])
+->name('cardmatch');
 
 Route::get('/perfil/{id}/edit', [PerfilController::class, 'edit'] 
 )->middleware(['auth'])

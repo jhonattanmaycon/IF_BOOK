@@ -35,7 +35,7 @@
 
                 </div>
                 @unless($user->id == Auth::user()->id)
-                <button class="btn btn-primary">Seguir</button>
+                <a href="{{route('follow', ['user_1'=>Auth::user()->id, 'user_2'=>$user->id])}}"><button class="btn btn-primary">Seguir</button></a>
                 <button class="btn btn-outline-primary">Mensagem</button>
                 @endunless
                 @unless($user->id != Auth::user()->id)

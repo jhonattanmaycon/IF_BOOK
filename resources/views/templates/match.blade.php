@@ -109,8 +109,8 @@
 
       .filter-btn {
         position: absolute;
-        z-index: 2;
-        right: 15px;
+        z-index: 0;
+        right: -10px;
         width: 40px;
         height: 40px;
         transition: all 0.4s ease-in-out 0s;
@@ -293,14 +293,14 @@
           <img src="https://raw.githubusercontent.com/arjunamgain/FilterMenu/master/images/profile.jpg">
           <div class="user-details">
             <h4> {{Auth::user()->name}}</h4>
-            <p>Biografia</p>
+            <p>{{$user->bio}}</p>
           </div>
         </div>
       </div>
       <div class="clearfix"></div>
       <div class="filter-btn">
-      
-        <button class="btn btn-outline-danger btn-lg"> <i class="bi bi-box-arrow-in-right"></i></button>
+       
+        <a href="{{ route('cardmatch') }}"><button class="btn btn-outline-danger btn-lg"> <i class="bi bi-box-arrow-in-right"></i></button></a>
       
       </div>
       <div class="clearfix"></div>

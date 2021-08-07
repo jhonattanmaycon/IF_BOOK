@@ -96,4 +96,22 @@ class PerfilController extends Controller
 
   		return redirect()->route('perfil.home');
   	}
+
+    public function friends($user_2){
+      $validate = DB::table('user_follow_user')->where(['user_1' => Auth::user()->id, 'user_2'=>$user_2])->count();
+      //$validate = Auth::user()->user_follow_user()->where('user_2', $user_2->id)->count();
+      if (!$validate) {
+        DB::table('user_follow_user')->insert([
+          'user_1' => Auth::user()->id,
+          'user_2' => $user_2,
+        ]);
+        return redirect()->route('perfil.home', ['user' => $user_2]);
+      } 
+      else {
+        DB::table('user_follow_user')->where(['user_1' => Auth::user()->id, 'user_2'=>$user_2])->delete();
+        return redirect()->route('library', ['user' => Auth::user()->id]);
+      }
+    }
+
+
 }
