@@ -12,58 +12,60 @@
     <button type="button" class="btn btn-success btn-lg mt-2 ml-2" data-toggle="modal" data-target="#meuModal">Fazer publicação</button>
 
      <!-- Select de posts para o usuario -->
-   {{-- @foreach ($posts)
-     @if (Auth::user()->hasBook($book->id)) 
-    <tr class="cart_item">
-      <td data-title="cbox" class="product-cbox">
-        <span>
-          <input type="checkbox" id="cbox3" value="first_checkbox">
-        </span>
-      </td>
+     <div class="col-md-8 mb-3 mt-3" >
+		  <div class="card p-3 mb-2 bg-dark text-white p-white ">
+			<div class="card-body " >
 
-      <td data-title="Product" class="product-name">
-        <span class="product-thumbnail">
-          <a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"width="200px" alt="cart-product-1"></a>
-        </span>
-          <span class="product-detail">
-            <a href="#"><h5>{{ $book->title }}</h5></a>
-            <span><strong>Author:</strong>{{ $book->author }}</span>
-            <span><strong>Gênero:</strong>{{ $book->genre }}</span>
-            <span><strong>Ano:</strong> {{ $book->year }}</span>
-            <span><strong>Faixa Etária:</strong>{{ $book->age }}</span>
-        </span>
-      </td>
+			<tbody>
+				@foreach ($dados as $postagem)
+        		{{--@if ($user->segue($user)) --}}
+				
+				<div class="text-center ">
+				<tr class="cart_item">
 
-      <td data-title="action" class="product-action">
-        <div class="dropdown">
-          <a href="#" data-toggle="dropdown"class="dropdown-toggle">Opções</a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ route('paraLer', ['book' => $book->id]) }}">Para Ler</a></li>
-              <li><a href="{{ route('jaLido', ['book' => $book->id]) }}">Já Lido</a></li>
-              <li><a href="{{ route('paraFav', ['book' => $book->id]) }}">Fazer anotações</a></li>
-              <li><a href="#">Favoritar</a></li>
-            </ul>
-        </div>
-      </td>
+				<td data-title="Product" class="product-name">
+					<span class="inline">
+						<a href="#"><h5><strong>{{ $postagem->user_2}}Usuário </strong>{{ $postagem->name}} </h5></a><i><h6>{{ $postagem->created_at}}</h6></i></a>
+						</span>
+						<br>
+						<div class="gallery">
+							<div class="gallery-item" tabindex="0">
+							<img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" class="gallery-image" width="200px" alt="cart-product-1">
+							<a href="#"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
+							</div>
+						</div>
+					<br>
+					<br>
+					</span>
 
-      <td class="product-price">
-              <p>Sua avaliação: <a href="#">☆☆☆☆☆</a> <br>
-                Ver postagens <a href="#">sobre</a>
-              </p>
-      </td>
+					<span class="product-detail">
+						
+						<span><strong>"{{ $postagem->message }}"</strong></span>  <br>  <br>
+						<button class="form-group col-md-3 box-border">Curtir</button><button class="form-group col-md-3 box-border">Comentar</button>
+						<br>		<br>		<br>
+						
+					</span>
+				</td>
 
-            <td class="product-remove">
-              Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove', ['book' => $book->id]) }}">Remover</a>
-            </td>
+				<td data-title="action" class="product-action">
+					
+				</td>
 
-    </tr>
+				
 
-          
-  @endif 
-    
+				</tr>
 
-    @endforeach
-                --}}
+					
+			</div class="container">
+     {{--  @endif--}}
+				@endforeach
+
+	  </tbody>
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
 </section>
 
 

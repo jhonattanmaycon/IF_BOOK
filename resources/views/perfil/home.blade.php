@@ -26,6 +26,7 @@
               {{--<img src="{{ asset('foto_perfil/' . $user->photo) }}" alt="Admin" class="rounded-circle" width="90px">--}}
               <div class="mt-3">
                 <h4> {{ $user->realname }} </h4>
+                <h6> @ {{ $user->name }} </h6>
                 <p class="text-secondary mb-1">{{ $user->city}}, {{$user->years }}</p>
                 <p class="text-muted font-size-sm">{{ $user->bio}}</p>
                 <div class="social-links text-center mb-3">
@@ -35,9 +36,17 @@
 
                 </div>
                 @unless($user->id == Auth::user()->id)
-                <a href="{{route('follow', ['user_1'=>Auth::user()->id, 'user_2'=>$user->id])}}"><button class="btn btn-primary">Seguir</button></a>
-                <button class="btn btn-outline-primary">Mensagem</button>
+                @if($verification==0)
+                  <a href="{{route('follow', ['user_1'=>Auth::user()->id, 'user_2'=>$user->id])}}"><button class="btn btn-primary">Seguir</button></a>
+                  <button class="btn btn-outline-primary">Mensagem</button>
+              
+                @endif
+                @if($verification==1)
+                  <a href="{{route('follow', ['user_1'=>Auth::user()->id, 'user_2'=>$user->id])}}"><button class="btn btn-primary">Deseguir</button></a>
+                  <button class="btn btn-outline-primary">Mensagem</button>
+                @endif
                 @endunless
+                
                 @unless($user->id != Auth::user()->id)
                 <a href="{{ route('perfil.edit', ['id'=>$user->id]) }}"><button class="btn btn-light">Editar Perfil</button></a>
                 @endunless
@@ -53,15 +62,15 @@
           <div class="card-body" >
             <div class="row">
               <div class="col-sm  align-items-center text-center">
-                <h4> Seguidores</h4>
-
-                <p class="text-secondary mb-1">{{ $user->followers}}</p>
+               
+                <a href="#"><h4 data-toggle="modal" data-target="#meuModal2"> Seguidores</h4></a>
+                <p class="text-secondary mb-1">{{$user->contsegue($user)}}</p>
               </div>
               <div class="col-sm  align-items-center text-center">
-                <h4> Seguindo</h4>
-                <p class="text-secondary mb-1">{{ $user->follows}}</p>
+                <a href="#"><h4 data-toggle="modal" data-target="#meuModal3"> Seguindo</h4></a>
+                <p class="text-secondary mb-1">{{ $user->contseguindo($user)}}</p>
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -166,7 +175,7 @@
           {{-- decoding="auto" style="object-fit: cover;" sizes="293px" --}}
 
          <img  src="{{asset('image_post/' . $post->image)}}" class="gallery-image" alt="">
-         <a href="#"> <i class="bi bi-heart-fill"> 100 &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> 50 </i> </a>
+         <a href="#"> <i class="bi bi-heart-fill"> {{$post->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$post->views}} </i> </a>
 
       
 
@@ -192,6 +201,70 @@
 
   @endforeach
 
+    <!-- Modal Seguidores -->
+              <div id="meuModal2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Conteúdo do modal-->
+                  <div class="modal-content">
+                
+                    <!-- Cabeçalho do modal -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Seguidores de {{$user->name}}</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Corpo do modal -->
+                    {{-- @foreach ($amigos as $amigo)
+                    @if ($user->segue($amigo))
+                      <div class="text-center">
+                
+                        
+                        <a><h3>{{$amigo->name}}</h3></a>
+                      </div>
+                    @endif 
+                    @endforeach 
+                --}}
+
+                    @foreach ($user->meus_seguidores() as $amigo )
+                        <div class="text-center">
+                    
+                            
+                          <a><h3>{{$amigo->name}}</h3></a>
+                        </div>
+                    @endforeach 
+
+                  </div>
+                </div>
+              </div>
+            <!-- Rodapé do modal-->
+
+             <!-- Modal Seguidos-->
+                <div id="meuModal3" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Conteúdo do modal-->
+                    <div class="modal-content">
+
+                      <!-- Cabeçalho do modal -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">{{$user->name}} segue</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+
+                      <!-- Corpo do modal -->
+                      @foreach ($user->meus_seguindos() as $amigo )
+                        <div class="text-center">
+                    
+                            
+                          <a><h3>{{$amigo->name}}</h3></a>
+                        </div>
+                    @endforeach 
+                        
+                      </div>  
+                    </div>
+            <!-- Rodapé do modal-->
+           
 </div>
 </main>
 @endsection

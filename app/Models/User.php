@@ -49,6 +49,35 @@ class User extends Authenticatable
         return $this->belongsToMany(Book::class, 'users_books', 'user_id', 'book_id');
     }
 
+    public function amigos(){
+        return $this->belongsToMany(User::class, 'user_follow_user', 'user_1', 'user_2');
+    }
+
+    public function contsegue($user){
+        $has = DB::table('user_follow_user')->where(['user_2'=> $user->id])->count();
+        return $has;
+    }
+    public function contseguindo($user){
+        $has = DB::table('user_follow_user')->where(['user_1'=> $user->id])->count();
+        return $has;
+    }
+
+    //função para obter seguidores
+    public function meus_seguidores () {
+        $list = DB::table ('user_follow_user')->join ('users', 'users.id', '=', 'user_follow_user.user_1')
+            ->where(['user_2' => $this->id])
+            ->get();
+       
+        return $list;
+    }
+    public function meus_seguindos () {
+        $list = DB::table ('user_follow_user')->join ('users', 'users.id', '=', 'user_follow_user.user_2')
+            ->where(['user_1' => $this->id])
+            ->get();
+       
+        return $list;
+    }
+
     public function exist($book_id){
 
         $has = $this->books()->where(['book_id'=> $book_id,  'has'=>1])->count();
@@ -104,9 +133,17 @@ class User extends Authenticatable
        //alterar a variavel rating para fav
         return $has;
     }
-
-
-   
+    // função para mostrar o feed do usuario
+    public function carregar_feed () {
+        $list = DB::table ('user_follow_user')
+            ->join ('users', 'users.id', '=', 'user_follow_user.user_2')
+            ->join ('posts', 'posts.user_id', '=', 'user_follow_user.user_2')
+            ->where(['user_1' => $this->id])
+            ->select('posts.id','message','likes', 'obra','posts.created_at','posts.views', 'users.name', 'user_follow_user.user_2')->get();
+    // precisa carregar: mensagem, imagem, likes, comentarios da postagem
+        return $list;
+    
+    }
 
 
 }

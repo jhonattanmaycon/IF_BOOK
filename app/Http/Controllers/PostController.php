@@ -43,6 +43,10 @@ class PostController extends Controller
 
         $post->message = $request->post('message');
 
+        $post->obra = $request->post('obra');
+
+        $post->categoria = $request->post('categoria');
+
         $post->user_id = Auth::user()->id;
 
         $nameFile = time() . Auth::user()->id .".". $request->image->extension();

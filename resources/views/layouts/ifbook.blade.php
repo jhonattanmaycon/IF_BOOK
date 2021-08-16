@@ -2,13 +2,6 @@
 
 <head>
   
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>iPortfolio Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -63,7 +56,6 @@
           <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
         <!-- Modal -->
     <div id="meuModal" class="modal fade" role="dialog">
-  
       <div class="modal-dialog">
 
         <!-- Conteúdo do modal-->
@@ -90,6 +82,15 @@
             <div class="text-center">
             <label for="w3review">No que você está pensando?</label>
             <textarea id="message" name="message" rows="4" cols="55" required ></textarea>
+            <label for="w3review">A que se refere isso?</label>
+            <textarea id="obra" name="obra" rows="1" cols="55"></textarea>
+            <select name="categoria" required>
+              <option value="bota">Filme</option>
+              <option value="fla">Livro</option>
+              <option value="flu">Negociação</option>
+              <option value="vasco">Outros</option>
+              </select>
+
             </div>
             {{--
             <div class="text-center">
@@ -125,6 +126,21 @@
 
         </div>
       </div>
+
+
+  
+ 
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
 
       <nav id="navbar" class="nav-menu nav2">
         <ul>
@@ -164,6 +180,7 @@
 
   <!-- Template Main JS File -->
   <script>
+
     var loadFile = function(event) {
       var output = document.getElementById('output');
       output.src = URL.createObjectURL(event.target.files[0]);

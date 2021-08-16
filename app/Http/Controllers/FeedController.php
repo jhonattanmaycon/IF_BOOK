@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use Auth;
+Use Illuminate\Support\Facades\DB;
 
 use App\Models\{
 	Post
@@ -28,9 +29,15 @@ class FeedController extends Controller
 */   
 
 public function feed() {
-	$dados = Auth::user();
-	return view('templates.feed', ['user'=>$dados]);
+	// $dados = DB::table('posts')->OrderBy('created_at', 'DESC')->get();
+	$user = Auth::user();
+	// $amigos = $user->meus_seguidores();
+	$dados = $user->carregar_feed();
+	//return view('templates.feed', ['user'=>$user,'dados'=>$dados,'amigos'=>$amigos]);
+
+	return view('templates.feed', ['user'=>$user,'dados'=>$dados]);
 }
+
 	/* 
     public function feed(Post $posts) {
     	 $dados = Auth::user();

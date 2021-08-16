@@ -32,7 +32,7 @@
 						<div class="gallery">
 							<div class="gallery-item" tabindex="0">
 							<img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" class="gallery-image" width="200px" alt="cart-product-1">
-							<a href="#"> <i class="bi bi-heart-fill"> 100 &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> 50 </i> </a>
+							<a href="#"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
 							</div>
 						</div>
 					<br>

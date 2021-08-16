@@ -32,13 +32,33 @@ class PerfilController extends Controller
 
     public function perfil() {
     	$user = Auth::user();
+      
+      $amigos = $user->amigos;
+
       $posts = DB::table('posts')->where(['user_id'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
-      return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
+
+      //$follows = DB::table('user_follow_user')->where(['user_1'=>Auth::id()])->count();
+      //$followers = DB::table('user_follow_user')->where(['user_2'=>Auth::id()])->count();
+
+      //$listafollows = DB::table('user_follow_user')->where(['user_1'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
+      //$listafollowers = DB::table('user_follow_user')->where(['user_2'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
+
+      //return view('perfil.home', ['user'=>$user, 'posts'=>$posts,'follows'=>$follows, 'followers'=>$followers, 'listafollows'=>$listafollows, 'listafollowers'=>$listafollowers, 'amigos'=>$amigos]);
+      return view('perfil.home', ['user'=>$user, 'posts'=>$posts, 'amigos'=>$amigos]);
     }
 
     public function perfilview(User $user) {
+      $amigos = $user->amigos;
       $posts = DB::table('posts')->where(['user_id'=>$user->id])->OrderBy('created_at', 'DESC')->get();
-      return view('perfil.home', ['user'=>$user, 'posts'=>$posts]);
+     // $follows = DB::table('user_follow_user')->where(['user_1'=>$user->id])->count();
+     // $followers = DB::table('user_follow_user')->where(['user_2'=>$user->id])->count();
+      $verification = DB::table('user_follow_user')->where(['user_1'=>Auth::id(),'user_2'=>$user->id])->count();
+
+     // $listafollows = DB::table('user_follow_user')->where(['user_1'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
+     // $listafollowers = DB::table('user_follow_user')->where(['user_2'=>Auth::id()])->OrderBy('created_at', 'DESC')->get();
+
+     // return view('perfil.home', ['user'=>$user, 'posts'=>$posts, 'follows'=>$follows, 'followers'=>$followers,  'verification'=>$verification,'listafollows'=>$listafollows, 'listafollowers'=>$listafollowers]);
+     return view('perfil.home', ['user'=>$user, 'posts'=>$posts, 'verification'=>$verification,'amigos'=>$amigos]);
     }
 
     public function edit($id) {
@@ -105,11 +125,11 @@ class PerfilController extends Controller
           'user_1' => Auth::user()->id,
           'user_2' => $user_2,
         ]);
-        return redirect()->route('perfil.home', ['user' => $user_2]);
+        return redirect()->route('perfil.explore', ['user' => $user_2]);
       } 
       else {
         DB::table('user_follow_user')->where(['user_1' => Auth::user()->id, 'user_2'=>$user_2])->delete();
-        return redirect()->route('library', ['user' => Auth::user()->id]);
+        return redirect()->route('perfil.explore', ['user' => $user_2]);
       }
     }
 

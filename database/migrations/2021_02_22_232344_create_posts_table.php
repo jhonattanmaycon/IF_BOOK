@@ -16,6 +16,8 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('image')->nullable();
+            $table->string('categoria')->nullable();
+            $table->unsignedBigInteger('obra');
             $table->integer('likes')->default(0);
             $table->integer('views')->default(0);
             $table->string('message')->nullable(); //editor tinymce
@@ -24,6 +26,10 @@ class CreatePostsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
+
+            $table->foreign('obra')
+                ->references('id')
+                ->on('books');
 
             $table->timestamps();
         });
@@ -36,6 +42,8 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
+  
         Schema::dropIfExists('posts');
+
     }
 }
