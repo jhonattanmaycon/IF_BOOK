@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 class LivroController extends Controller
@@ -13,10 +14,18 @@ class LivroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $book = Book::paginate(6);
         return view('book.index', ['book'=>$book]);
+    }
+
+    public function livro($id)
+    {
+        $livro = Book::find($id);
+        $autor = DB::table('books')->where(['author'=>$livro->author])->OrderBy('year', 'ASC')->get();
+        return view('templates.bookview', ['book'=>$livro,'autor'=>$autor]);
     }
 
     /**

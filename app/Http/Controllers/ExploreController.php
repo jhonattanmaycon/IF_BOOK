@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Gate;
 class ExploreController extends Controller
 {
      public function explore() {
-    	 $dados = DB::table('posts')->OrderBy('created_at', 'DESC')->get();
+    	 $dados = DB::table('posts')->join('users', 'users.id', '=', 'posts.user_id')->orderBy('posts.created_at', 'DESC')->get();
 
     	//return view('templates.explore', ['dados'=>$dados, 'dadosuser'=>$dadosuser]);
         return view('templates.explore', ['dados'=>$dados]);

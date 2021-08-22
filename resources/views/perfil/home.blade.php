@@ -230,7 +230,7 @@
                         <div class="text-center">
                     
                             
-                          <a><h3>{{$amigo->name}}</h3></a>
+                          <a href="{{route('perfil.explore', ['user'=>$amigo->id])}}"><h3>{{$amigo->name}}</h3></a>
                         </div>
                     @endforeach 
 
@@ -257,7 +257,7 @@
                         <div class="text-center">
                     
                             
-                          <a><h3>{{$amigo->name}}</h3></a>
+                          <a href="{{route('perfil.explore', ['user'=>$amigo->id])}}"><h3>{{$amigo->name}}</h3></a>
                         </div>
                     @endforeach 
                         

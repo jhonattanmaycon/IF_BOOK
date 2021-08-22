@@ -26,7 +26,7 @@
 
 				<td data-title="Product" class="product-name">
 					<span class="inline">
-						<a href="#"><h5><strong>Usuário </strong>{{ $postagem->id }} </h5></a><i><h6>{{ $postagem->created_at}}</h6></i></a>
+						<a href="#"><h5>{{ $postagem->id }} <strong>Usuário {{$postagem->name}} </strong></h5></a><i><h6>{{ $postagem->created_at}}</h6></i></a>
 						</span>
 						<br>
 						<div class="gallery">

@@ -78,11 +78,11 @@
                                   <a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"width="200px" alt="cart-product-1"></a>
                                 </span>
                                   <span class="product-detail">
-                                    <a href="#"><h5>{{ $book->title }}</h5></a>
-                                    <span><strong>Author:</strong>{{ $book->author }}</span>
-                                    <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                                    <a href="{{route('livroview', ['book'=> $book->id]) }}" style="color: rgb(129, 113, 180)"><h5>{{ $book->title }}</h5></a>
+                                    <span><strong>Author:</strong> {{ $book->author }}</span>
+                                    <span><strong>Gênero:</strong> {{ $book->genre }}</span>
                                     <span><strong>Ano:</strong> {{ $book->year }}</span>
-                                    <span><strong>Faixa Etária:</strong>{{ $book->age }}</span>
+                                    <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
                                 </span>
                               </td>
 
@@ -105,6 +105,7 @@
                               </td>
 
                                     <td class="product-remove">
+                                      <br>
                                       Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove', ['book' => $book->id]) }}">Remover</a>
                                     </td>
 
@@ -144,9 +145,9 @@
                       <td data-title="Product" class="product-name">
                         <span class="product-thumbnail"><a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" width="200px" alt="cart-product-1"></a></span>
                         <span class="product-detail">
-                          <a href="#"><h5>{{ $book->title }}</h5></a>
-                          <span><strong>Author:</strong>{{ $book->author }}</span>
-                          <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                          <a href="{{route('livroview', ['book'=> $book->id]) }}" style="color: rgb(129, 113, 180)"><h5>{{ $book->title }}</h5></a>
+                          <span><strong>Author:</strong> {{ $book->author }}</span>
+                          <span><strong>Gênero:</strong> {{ $book->genre }}</span>
                           <span><strong>Ano:</strong> {{ $book->year }}</span>
                           <span><strong>Faixa Etária:</strong>{{ $book->age }}</span>
                         </span>
@@ -167,6 +168,7 @@
                       </td>
 
                       <td class="product-remove">
+                        <br>
                         Este livro foi adicionado ao Para Ler. <br> <a href="{{ route('removeToRead', ['book' => $book->id]) }}">Remover</a>
                       </td>
                     </tr>
@@ -205,11 +207,11 @@
                           <a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" width="200px" alt="cart-product-1"></a>
                         </span>
                         <span class="product-detail">
-                          <a href="#"><h5>{{ $book->title }}</h5></a>
-                          <span><strong>Author:</strong>{{ $book->author }}</span>
-                          <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                          <a href="{{route('livroview', ['book'=> $book->id]) }}" style="color: rgb(129, 113, 180)">{{ $book->title }}</a>
+                          <span><strong>Author:</strong> {{ $book->author }}</span>
+                          <span><strong>Gênero:</strong> {{ $book->genre }}</span>
                           <span><strong>Ano:</strong> {{ $book->year }}</span>
-                          <span><strong>Faixa Etária:</strong>{{ $book->age }}</span>
+                          <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
                         </span>
                       </td>
                       <td data-title="action" class="product-action">
@@ -229,6 +231,7 @@
                         </p>
                       </td>
                       <td class="product-remove">
+                        <br>
                         Este livro foi adicionado ao seus livros Lidos. <br> <a href="{{ route('removeRead', ['book' => $book->id]) }}">Remover</a>
                       </td>
                     </tr>
@@ -268,12 +271,12 @@
                         </span>
 
                         <span class="product-detail">
-                          <a href="#"><h5>{{ $book->title }}</h5> </a>
+                          <a href="{{route('livroview', ['book'=> $book->id]) }}" style="color: rgb(129, 113, 180)"><h5>{{ $book->title }}</h5> </a>
 
-                          <span><strong>Author:</strong>{{ $book->author }}</span>
-                          <span><strong>Gênero:</strong>{{ $book->genre }}</span>
+                          <span><strong>Author:</strong> {{ $book->author }}</span>
+                          <span><strong>Gênero:</strong> {{ $book->genre }}</span>
                           <span><strong>Ano:</strong> {{ $book->year }}</span>
-                          <span><strong>Faixa Etária:</strong>{{ $book->age }}</span>
+                          <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
                         </span>
                       </td>
                       <td data-title="action" class="product-action">
@@ -290,6 +293,7 @@
                         </p>
                       </td>
                       <td class="product-remove">
+                        <br>
                         Este livro foi adicionado aos seus Favoritos. <br> <a href="{{ route('removeFav', ['book' => $book->id]) }}">Remover</a>
                       </td>
                     </tr>

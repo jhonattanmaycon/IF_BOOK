@@ -142,6 +142,12 @@ Route::put('/update/{id}', [PerfilController::class, 'update']
 )->middleware(['auth'])
 ->name('perfil.update');
 
+Route::get('/book/{book}', [livroController::class, 'livro'])
+->middleware(['auth'])
+->name('livroview');
+
+
+
 Route::resource('livros', LivroController::class);
 
 require __DIR__.'/auth.php';
