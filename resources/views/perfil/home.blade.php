@@ -23,18 +23,19 @@
         <div class="card p-3 mb-2 bg-dark text-white p-white ">
           <div class="card-body " >
             <div class="d-flex flex-column align-items-center text-center " >
-              {{--<img src="{{ asset('foto_perfil/' . $user->photo) }}" alt="Admin" class="rounded-circle" width="90px">--}}
+              @if($user->photo == null)
+              <img src="{{asset('assets\img\semfoto.png')}}" alt="foto" class="rounded-circle" width="83px">
+              @endif
+              @if($user->photo)
+              <img src="{{ asset('storage/imgphotos/' . $user->photo) }}" alt="foto" class="rounded-circle" width="83px">
+              @endif
+              
               <div class="mt-3">
-                <h4> {{ $user->realname }} </h4>
-                <h6> @ {{ $user->name }} </h6>
+                <h4>{{$user->realname }}</h4>
+                <p class="text-secondary mb-1 small"> @ {{ $user->name }} </p>
                 <p class="text-secondary mb-1">{{ $user->city}}, {{$user->years }}</p>
                 <p class="text-muted font-size-sm">{{ $user->bio}}</p>
-                <div class="social-links text-center mb-3">
-                  <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                  <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                  <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-
-                </div>
+              
                 @unless($user->id == Auth::user()->id)
                 @if($verification==0)
                   <a href="{{route('follow', ['user_1'=>Auth::user()->id, 'user_2'=>$user->id])}}"><button class="btn btn-primary">Seguir</button></a>
@@ -79,12 +80,23 @@
           <div class="card-body " >
             <div class="d-flex flex-column align-items-center text-center " >
               <div class="">
+                <a href="{{route('libraryview', ['user'=>$user])}}"><h4>Livraria</h4></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-dark text-white p-white ">
+          <div class="card-body " >
+            <div class="d-flex flex-column align-items-center text-center " >
+              <div class="">
                 <h4> Hobbies</h4>
                 <p class="text-secondary mb-1">{{ $user->hobbie}}</p>
               </div>
             </div>
           </div>
         </div>
+        
         <div class="card bg-dark text-white p-white ">
           <div class="card-body " >
             <div class="d-flex flex-column align-items-center text-center " >
@@ -95,6 +107,7 @@
               </div>
             </div>
           </div>
+
 
         </div>
 
@@ -174,7 +187,7 @@
         <div class="gallery-item" tabindex="0">
           {{-- decoding="auto" style="object-fit: cover;" sizes="293px" --}}
 
-         <img  src="{{asset('image_post/' . $post->image)}}" class="gallery-image" alt="">
+         <img  src="{{asset ('storage/imgposts/' . $post->image)}}" class="gallery-image" alt="">
          <a href="#"> <i class="bi bi-heart-fill"> {{$post->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$post->views}} </i> </a>
 
       

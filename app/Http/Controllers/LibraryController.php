@@ -21,11 +21,18 @@ class LibraryController extends Controller
 
 
 
-	public function library(User $user){
-		
+	public function library(){
+		$user = Auth::user();
+		$books = $user->books;
+	
+		return view('templates.library', ['user' => $user, 'books' => $books]);
+	}
+
+	public function libraryview(User $user){
+	
 		$books = $user->books;
 
-		return view('templates.library', ['user' => $user, 'books' => $books]);
+		return view('templates.libraryview', ['user' => $user, 'books' => $books]);
 	}
 
 	public function getbook(){

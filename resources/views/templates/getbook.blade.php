@@ -149,7 +149,7 @@
 							<ul>
 							
 								@if(count($book))
-								@for($i = 0; $i < 6; $i++)
+								@for($i = 0; $i < 1; $i++)
 								<li>
 									<div class="book-list-icon blue-icon"  @if(Auth::user()->exist($book[$i]->id))  style="visibility: hidden" @endif> <a style="color: white" title="Adicionar aos seus livros" href="{{ route('addbook', ['book'=> $book[$i]->id]) }}"><i class="fas fa-plus-circle fa-2x"></i></a>  </div>
 									<figure>

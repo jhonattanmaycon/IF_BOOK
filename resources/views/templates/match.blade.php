@@ -290,7 +290,7 @@
       <div class="top">
         
         <div class="user-profile">
-          <img src="https://raw.githubusercontent.com/arjunamgain/FilterMenu/master/images/profile.jpg">
+          <img src="{{ asset('storage/imgphotos/' . $user->photo) }}">
           <div class="user-details">
             <h4> {{Auth::user()->name}}</h4>
             <p>{{$user->bio}}</p>
@@ -310,12 +310,15 @@
           <small>Abril 26, 2021</small>
         </div>
         <ul class="tasks">
-          <li class="one red">
-            <span class="task-title">Você recebeu uma curtida</span>
-            <span class="task-time">5pm</span>
+          @foreach ($eventos1 as $evento1)
+          <li class="two green hang">
+            <span class="task-title">Você recebeu um amei de <a style="color: rgb(133, 37, 223)" href="{{route('perfil.explore', ['user'=>$evento1->id])}}"> {{$evento1->name}} </a></span>
+          {{-- pq data ta null? --}} <span class="task-time">{{$evento1->created_at}}</span> 
             <span class="task-cat">Metch</span>
-
+          <img src="{{ asset('storage/imgphotos/' . $evento1->photo) }}">
           </li>
+
+          {{-- 
           <li class="one red">
             <span class="task-title">Você recebeu um SuperLike</span>
             <span class="task-time">3pm</span>
@@ -327,7 +330,6 @@
             <span class="task-time">2pm</span>
             <span class="task-cat">Nome da pessoa</span>
 
-          </li>
           </li>
           <li class="tow green hang">
             <span class="task-title">Novas mensagens de grupo</span>
@@ -353,7 +355,8 @@
             <span class="task-time">2pm</span>
             <span class="task-cat">Library</span>
           </li>
-
+          --}}
+          @endforeach
         </ul>
       </div>
     </div>

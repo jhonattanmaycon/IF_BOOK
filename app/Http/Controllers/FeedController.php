@@ -33,11 +33,32 @@ public function feed() {
 	$user = Auth::user();
 	// $amigos = $user->meus_seguidores();
 	$dados = $user->carregar_feed();
+
+	$dados2 = DB::table('comments')->join('users', 'users.id', '=', 'comments.user_id')->orderBy('comments.created_at', 'DESC')->select('users.name','users.id','text','comments.post_id','comments.created_at')->get();
+	
 	//return view('templates.feed', ['user'=>$user,'dados'=>$dados,'amigos'=>$amigos]);
 
-	return view('templates.feed', ['user'=>$user,'dados'=>$dados]);
+	return view('templates.feed', ['user'=>$user,'dados'=>$dados, 'dados2'=>$dados2]);
 }
 
+public function like($post_id){
+	$user = Auth::user();
+	$dados = $user->carregar_feed();
+
+	$validate = DB::table('likes')->where(['user_id' => Auth::user()->id, 'post_id'=>$post_id])->count();
+
+	if (!$validate) {
+	  DB::table('likes')->insert([
+		'user_id' => Auth::user()->id,
+		'post_id' => $post_id,
+	  ]);
+	  return view('templates.feed', ['dados'=>$dados, 'user'=>Auth::user()->id]);
+	} 
+	else {
+	  DB::table('likes')->where(['user_id' => Auth::user()->id, 'post_id'=>$post_id])->delete();
+	  return view('templates.feed', ['dados'=>$dados, 'user'=>Auth::user()->id]);
+	}
+}
 	/* 
     public function feed(Post $posts) {
     	 $dados = Auth::user();

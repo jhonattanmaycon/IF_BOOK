@@ -10,6 +10,7 @@ use App\Http\Controllers\{
 	HomeController,
 	LivroController,
 	PostController,
+	CommentController,
 	AdminController,
 	
 };
@@ -56,9 +57,14 @@ Route::get('/explore',[ExploreController::class, 'explore'])
 ->name('explore');
 
 // Rota para controle da biblioteca
-Route::get('/library/{user}',[LibraryController::class,'library'])
+Route::get('/library',[LibraryController::class,'library'])
 ->middleware(['auth'])
 ->name('library');
+
+Route::get('/library/{user}',[LibraryController::class,'libraryview'])
+->middleware(['auth'])
+->name('libraryview');
+
 
 Route::get('/library_get', [LibraryController::class,'getbook']) 
 ->name('getbook');
@@ -118,6 +124,11 @@ Route::get('/tiny', function() {
 
 Route::resource('posts', PostController::class);
 
+// Comments
+
+
+Route::resource('comments', CommentController::class);
+
 
 // ADMIN
 
@@ -134,6 +145,16 @@ Route::get('/match/explorer',[MatchController::class,'explorer'])
 ->middleware(['auth'])
 ->name('cardmatch');
 
+Route::get('/match/explorer/{user}', [MatchController::class, 'love'])
+->middleware(['auth'])
+->name('love');
+
+Route::get('/match/explorer/no/{user}', [MatchController::class, 'nolove'])
+->middleware(['auth'])
+->name('nolove');
+
+//
+
 Route::get('/perfil/{id}/edit', [PerfilController::class, 'edit'] 
 )->middleware(['auth'])
 ->name('perfil.edit');
@@ -146,8 +167,17 @@ Route::get('/book/{book}', [livroController::class, 'livro'])
 ->middleware(['auth'])
 ->name('livroview');
 
+Route::get('/explore/{post_id}', [ExploreController::class, 'like'])
+->middleware(['auth'])	
+->name('like');
+
+Route::get('/feed/{post_id}', [FeedController::class, 'like'])
+->middleware(['auth'])	
+->name('likefeed');
+
 
 
 Route::resource('livros', LivroController::class);
+
 
 require __DIR__.'/auth.php';

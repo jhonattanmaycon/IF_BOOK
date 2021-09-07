@@ -36,19 +36,16 @@
 <section class="d-flex flex-column justify-content-center align-items-center">
   
 
-  <a href="{{ route('getbook') }}"><button class="button">Adicionar Livro</button></a>
-
   <div id="content" class="site-content">
-    
     <div class="col-md-12">
       <div class="page type-page status-publish hentry">
         <div class="entry-content">
           <div class="woocommerce table-tabs" id="responsiveTabs">
             <ul class="nav nav-tabs">
-              <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Seus Livros ({{ Auth::user()->contHas(Auth::user()) }})</a></li>
-              <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Para ler ({{ Auth::user()->contToRead(Auth::user()) }})</a></li>
-              <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Lidos ({{ Auth::user()->contRead(Auth::user()) }})</a></li>
-              <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Favoritos ({{ Auth::user()->contFav(Auth::user()) }})</a></li>
+              <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Seus Livros ({{ $user->contHas($user) }})</a></li>
+              <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Para ler ({{ $user->contToRead($user) }})</a></li>
+              <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Lidos ({{$user->contRead($user) }})</a></li>
+              <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Favoritos ({{ $user->contFav($user) }})</a></li>
             </ul>
 
             <div class="tab-content">
@@ -58,14 +55,12 @@
                             <tr>
                               <th class="product-name">&nbsp;</th>
                               <th class="product-name">Obras</th>
-                              <th class="product-quantity">Ações</th>
                               <th class="product-price">Notas</th>
-                              <th class="product-subtotal">&nbsp;</th>
                             </tr>
                           </thead>
                           <tbody>
                             @foreach ($books as $book)
-                            @if (Auth::user()->hasBook($book->id, Auth::user()))
+                            @if ($user->hasBook($book->id, $user))
                             <tr class="cart_item">
                               <td data-title="cbox" class="product-cbox">
                                 <span>
@@ -86,29 +81,10 @@
                                 </span>
                               </td>
 
-                              <td data-title="action" class="product-action">
-                                <div class="dropdown">
-                                  <a href="#" data-toggle="dropdown"class="dropdown-toggle">Opções</a>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="{{ route('paraLer', ['book' => $book->id]) }}">Para Ler</a></li>
-                                      <li><a href="{{ route('jaLido', ['book' => $book->id]) }}">Já Lido</a></li>
-                                      <li><a href="{{ route('paraFav', ['book' => $book->id]) }}">Fazer anotações</a></li>
-                                      <li><a href="#">Favoritar</a></li>
-                                    </ul>
-                                </div>
-                              </td>
-
-                              <td class="product-price">
-                                      <p>Sua avaliação: <a href="#">☆☆☆☆☆</a> <br>
-                                        Ver postagens <a href="#">sobre</a>
-                                      </p>
-                              </td>
-
-                                    <td class="product-remove">
+                              <td class="product-remove">
                                       <br>
-                                      Este livro foi adicionado dia x/x/x aos Seus livros. <br> <a href="{{ route('remove', ['book' => $book->id]) }}">Remover</a>
+                                      Este livro foi adicionado dia x/x/x aos Seus livros. <br> 
                                     </td>
-
                             </tr>
 
                                   
@@ -128,14 +104,13 @@
                     <tr>
                       <th class="product-name">&nbsp;</th>
                       <th class="product-name">Obras</th>
-                      <th class="product-quantity">Ações</th>
                       <th class="product-price">Notas</th>
-                      <th class="product-subtotal">&nbsp;</th>
+
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($books as $book)
-                    @if (Auth::user()->toReadBook($book->id, Auth::user()))
+                    @if ($user->toReadBook($book->id, $user))
                     <tr class="cart_item">
                       <td data-title="cbox" class="product-cbox">
                         <span>
@@ -152,24 +127,10 @@
                           <span><strong>Faixa Etária:</strong>{{ $book->age }}</span>
                         </span>
                       </td>
-                      <td data-title="action" class="product-action">
-                        <div class="dropdown">
-                          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opções</a>
-                            <ul class="dropdown-menu">
-                              <li><a href="{{ route('jaLido', ['book' => $book->id]) }}">Já Lido</a></li>
-                              <li><a href="#">Fazer anotações</a></li>
-                            </ul>
-                        </div>
-                      </td>
-                      <td class="product-price">
-                        <p>Deseja avaliar? <a href="#">☆☆☆☆☆</a> <br>
-                          Ver postagens <a href="#"> sobre</a>
-                        </p>
-                      </td>
-
+                      
                       <td class="product-remove">
                         <br>
-                        Este livro foi adicionado ao Para Ler. <br> <a href="{{ route('removeToRead', ['book' => $book->id]) }}">Remover</a>
+                        Este livro foi adicionado ao Para Ler. <br> 
                       </td>
                     </tr>
 
@@ -187,14 +148,13 @@
                     <tr>
                       <th class="product-name">&nbsp;</th>
                       <th class="product-name">Obras</th>
-                      <th class="product-quantity">Ações</th>
                       <th class="product-price">Notas</th>
-                      <th class="product-subtotal">&nbsp;</th>
+
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($books as $book)
-                    @if (Auth::user()->readBook($book->id, Auth::user()))
+                    @if ($user->readBook($book->id, $user))
                     <tr class="cart_item">
                       <td data-title="cbox" class="product-cbox">
                         <span>
@@ -225,14 +185,10 @@
                         </div>
 
                       </td>
-                      <td class="product-price">
-                        <p>Sua avaliação: <a href="#">☆☆☆☆☆</a> <br>
-                          Ver postagens<a href="#"> sobre </a>
-                        </p>
-                      </td>
+                     
                       <td class="product-remove">
                         <br>
-                        Este livro foi adicionado ao seus livros Lidos. <br> <a href="{{ route('removeRead', ['book' => $book->id]) }}">Remover</a>
+                        Este livro foi adicionado ao seus livros Lidos. <br>
                       </td>
                     </tr>
 
@@ -250,15 +206,13 @@
                     <tr>
                       <th class="product-name">&nbsp;</th>
                       <th class="product-name">Obras</th>
-                      <th class="product-quantity">Ações</th>
                       <th class="product-price">Notas</th>
-                      <th class="product-subtotal">&nbsp;</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     @foreach ($books as $book)
-                    @if (Auth::user()->favBook($book->id, Auth::user()))
+                    @if ($user->favBook($book->id, $user))
                     <tr class="cart_item">
                       <td data-title="cbox" class="product-cbox">
                         <span>
@@ -279,22 +233,10 @@
                           <span><strong>Faixa Etária:</strong> {{ $book->age }}</span>
                         </span>
                       </td>
-                      <td data-title="action" class="product-action">
-                        <div class="dropdown">
-                          <a href="#" data-toggle="dropdown"class="dropdown-toggle">Opções</a>
-                            <ul class="dropdown-menu">
-                              <li><a href="#">Fazer anotações</a></li>
-                            </ul>
-                        </div>
-                      </td>
-                      <td class="product-price">
-                        <p>Sua avaliação: <a href="#">☆☆☆☆☆</a> <br>
-                          Ver comentários <a href="#">sobre</a>
-                        </p>
-                      </td>
+                      
                       <td class="product-remove">
                         <br>
-                        Este livro foi adicionado aos seus Favoritos. <br> <a href="{{ route('removeFav', ['book' => $book->id]) }}">Remover</a>
+                        Este livro foi adicionado aos seus Favoritos. <br> 
                       </td>
                     </tr>
 

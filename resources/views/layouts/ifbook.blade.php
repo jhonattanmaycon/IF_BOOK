@@ -1,10 +1,14 @@
 <!DOCTYPE html> <html lang="en">
 
 <head>
-  
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta charset="utf-8">
+		<title>IFBOOK</title>
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets\img\favicon-32x32.png')}}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets\img\favicon-16x16.png')}}">
+		<link rel="manifest" href="{{asset('assets\img\site.webmanifest')}}">
+		<link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
+
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -75,7 +79,7 @@
             <div class="text-center">
               <img id="output" width="250px">
               <label for="cover">Adicionar foto</label>
-              <input type="file" accept="image/*" class="form-control" name="image" onchange="loadFile(event)">
+              <input type="file" accept="image/*" class="form-control" name="image" onchange="loadFile(event)" required>
             </div>
             <br>
 
@@ -146,7 +150,7 @@
         <ul>
           <li><a href="{{route('feed')}}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Feed</span></a></li>
           <li><a href="{{route('explore')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Explorar</span></a></li>
-          <li><a href="{{route('library', ['user'=> Auth::user()->id])}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Biblioteca</span></a></li>
+          <li><a href="{{route('library')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Biblioteca</span></a></li>
           <li><a href="{{route('match')}}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Match</span></a></li>
            <li><a href="{{ route('perfil.home') }}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Perfil</span></a></li>
           <li><a href="#" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Logout</span></a></li>
