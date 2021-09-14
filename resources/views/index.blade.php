@@ -8,7 +8,7 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets\img\favicon-32x32.png')}}">
 		<link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets\img\favicon-16x16.png')}}">
 		<link rel="manifest" href="{{asset('assets\img\site.webmanifest')}}">
-		<link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />;
+		<link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
 		<!-- Mobile Specific Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<!-- Font-->

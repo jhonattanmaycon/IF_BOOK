@@ -108,4 +108,14 @@ class PostController extends Controller
         $posts->delete();
       return redirect()->route('perfil.home');
     }
+
+    // Filtro Publicações
+        
+    public function FiltroPubli(Request $request)
+    {
+        $posts = Post::where('message', 'LIKE', "%{$request->filter}%")
+        ->paginate(); 
+
+        return view('templates.feed', compact('posts'));
+    }
 }

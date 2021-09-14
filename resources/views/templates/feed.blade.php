@@ -11,6 +11,12 @@
       <!-- Botão que irá abrir o modal -->
     <button type="button" class="btn btn-success btn-lg mt-2 ml-2" data-toggle="modal" data-target="#meuModal">Fazer publicação</button>
 
+    {{-- <form action="{{ route('post_filter') }}" method="post" class="form form-inline">	
+    	@csrf
+    		<input type="text" name="filter" placeholder="Filtrar" class="form-control">
+    		<<button type="submit" class="btn btn-info">Pesquisar</button> 
+    	</form> --}}
+
      <!-- Select de posts para o usuario -->
      <div class="col-md-8 mb-3 mt-3" >
 		  <div class="card p-3 mb-2 bg-dark text-white p-white ">

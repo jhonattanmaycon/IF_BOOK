@@ -17,5 +17,40 @@ class ExploreController extends Controller
 
     	//return view('templates.explore', ['dados'=>$dados, 'dadosuser'=>$dadosuser]);
         return view('templates.explore', ['dados'=>$dados]);
+     }
+
+         public function Filtro(Request $request)
+    {
+
+      if($request->filterCategoria == "zero"){
+
+           $dados = Post::where('message', 'LIKE', "%{$request->filter}%")->get();
+
+        
+
+             return view('templates.explore', compact('dados'));
+
+      }else{
+
+          $dados = Post::where('message', 'LIKE', "%{$request->filter}%")->where('categoria', 'LIKE', "%{$request->filterCategoria}%")->get();
+
+          return view('templates.explore', compact('dados'));
+      }
+
+      
+      
+      
     }
-}
+
+    //      public function FiltroCategoria(Request $request)
+    // {
+    //     $dados = Post::where('categoria', 'LIKE', "%{$request->filterCategoria}%")
+
+    //     ->paginate(); 
+
+
+
+    //     return view('templates.explore', compact('dados'));
+    }
+    
+

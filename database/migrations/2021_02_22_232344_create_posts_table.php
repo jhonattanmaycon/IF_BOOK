@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('categoria')->nullable();
-            $table->unsignedBigInteger('obra');
+            $table->unsignedBigInteger('obra')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('views')->default(0);
             $table->string('message')->nullable(); //editor tinymce

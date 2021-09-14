@@ -126,4 +126,20 @@ class LibraryController extends Controller
 		 return redirect()->route('library', ['user' => Auth::user()->id]);
 
 	}
+
+
+	public function book_filter(Request $request)
+	{
+		$book = Book::where('title', 'LIKE', "%{$request->filter}%")
+		->orWhere('author', 'LIKE', "%{$request->filter}%")
+		->orWhere('genre', 'LIKE', "%{$request->filter}%")
+		->orWhere('year', 'LIKE', "%{$request->filter}%")
+
+		->get();
+
+		
+        
+
+        return view('templates.getbook', compact('book'));
+	}
 }

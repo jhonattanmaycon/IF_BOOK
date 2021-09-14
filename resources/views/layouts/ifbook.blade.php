@@ -85,10 +85,12 @@
             <label for="w3review">A que se refere isso?</label>
             <textarea id="obra" name="obra" rows="1" cols="55"></textarea>
             <select name="categoria" required>
-              <option value="bota">Filme</option>
-              <option value="fla">Livro</option>
-              <option value="flu">Negociação</option>
-              <option value="vasco">Outros</option>
+              
+              <option value="filme">Filme</option>
+              <option value="livro">Livro</option>
+              <option value="negociacao">Negociação</option>
+              <option value="resenhas">Resenhas</option>
+              
               </select>
 
             </div>

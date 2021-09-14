@@ -68,24 +68,11 @@
 						<section class="search-filters">
 							<div class="filter-box">
 								<h3>Qual livro você deseja encontrar?</h3>
-								<form action="http://libraria.demo.presstigers.com/index.html" method="get">
+								<form action="{{ route('book_filter') }}" method="post">
+									@csrf
 									<div class="col-md-4 col-sm-6">
 										<div class="form-group">
-											<input class="form-control" placeholder="Pesquisar título" id="keywords" name="keywords" type="text">
-										</div>
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<div class="form-group">
-											<div class="form-group">
-												<input class="form-control" placeholder="Pesquisar autor" id="keywords" name="keywords" type="text">
-											</div>
-										</div>
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<div class="form-group">
-											<div class="form-group">
-												<input class="form-control" placeholder="Pesquisar gênero" id="keywords" name="keywords" type="text">
-											</div>
+											<input class="form-control" placeholder="Pesquisar título, autor, gênero ou ano" id="keywords" name="filter" type="text">
 										</div>
 									</div>
 									<div class="col-md-2 col-sm-6">
@@ -149,7 +136,7 @@
 							<ul>
 							
 								@if(count($book))
-								@for($i = 0; $i < 6; $i++)
+								@for($i = 0; $i < (count($book)); $i++)
 								<li>
 									<div class="book-list-icon blue-icon"  @if(Auth::user()->exist($book[$i]->id))  style="visibility: hidden" @endif> <a style="color: white" title="Adicionar aos seus livros" href="{{ route('addbook', ['book'=> $book[$i]->id]) }}"><i class="fas fa-plus-circle fa-2x"></i></a>  </div>
 									<figure>

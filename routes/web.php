@@ -150,4 +150,20 @@ Route::get('/book/{book}', [livroController::class, 'livro'])
 
 Route::resource('livros', LivroController::class);
 
+// Filtro de Publicações
+	
+	Route::any('feed/filter', [PostController::class, 'FiltroPubli' ])
+	->name('post_filter');
+
+	Route::any('explore/filter', [ExploreController::class, 'Filtro' ])
+	->name('explore_filter');
+
+
+	///////////////////////////////////
+	// Filtro de pesquisa de livros  //
+	///////////////////////////////////
+
+	Route::any('book/filter', [LibraryController::class, 'book_filter'])
+	->name('book_filter');
+
 require __DIR__.'/auth.php';

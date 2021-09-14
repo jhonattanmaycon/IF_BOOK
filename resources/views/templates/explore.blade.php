@@ -3,7 +3,7 @@
 <section class="d-flex flex-column justify-content-center align-items-center">
 	<h1 class="text-white">Explorador</h1>
 	
-		<div class="dropdown">
+		{{-- <div class="dropdown">
 		  <a href="#" data-toggle="dropdown"class="dropdown-toggle">Filtros</a>
 			<ul class="dropdown-menu">
 			  <li><a href="">&nbsp;&nbsp;Livros</a></li>
@@ -11,8 +11,38 @@
 			  <li><a href="">&nbsp;&nbsp;Resenhas</a></li>
 			  <li><a href="#">&nbsp;&nbsp;Negociação</a></li>
 			</ul>
-		</div>
+		</div> --}}
 
+		{{-- <form action="{{ route('explore_filterCategoria') }}" method="post">
+			@csrf
+			<select name="filterCategoria">
+
+				<option value="escolha">Escolha</option>
+				<option value="livro">Livro</option>
+				<option value="filme">Filme</option>
+				<option value="resenhas">Resenhas</option>
+				<option value="negociacao">Negociação</option>
+
+			</select>
+			<button type="submit">Enviar</button>
+		</form> --}}
+
+
+
+		<form action="{{ route('explore_filter') }}" method="post" class="form form-inline">	
+    		@csrf
+    		<input type="text" name="filter" placeholder="Filtrar" class="form-control">
+    		<select name="filterCategoria">
+
+				<option value="zero">Escolha</option>
+				<option value="livro">Livro</option>
+				<option value="filme">Filme</option>
+				<option value="resenhas">Resenhas</option>
+				<option value="negociacao">Negociação</option>
+
+			</select>
+    		<<button type="submit" class="btn btn-info">Pesquisar</button> 
+    	</form>
 
     
 		<div class="col-md-8 mb-3 mt-3" >
