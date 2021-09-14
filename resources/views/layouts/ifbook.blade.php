@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
 		<title>IFBOOK</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+   
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets\img\favicon-32x32.png')}}">
 		<link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets\img\favicon-16x16.png')}}">
 		<link rel="manifest" href="{{asset('assets\img\site.webmanifest')}}">
 		<link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
-
-
+    
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -58,74 +62,7 @@
           <a href="#" title="Criar um post"  class="facebook"  data-toggle="modal" data-target="#meuModal"><i class="bx bi-plus-circle"></i></a>
 
           <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <!-- Modal -->
-    <div id="meuModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Conteúdo do modal-->
-        <div class="modal-content">
-
-          <!-- Cabeçalho do modal -->
-          <div class="modal-header">
-            <h4 class="modal-title">Criar publicação</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-
-          <!-- Corpo do modal -->
-
-          <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
-            @csrf
-
-            <div class="text-center">
-              <img id="output" width="250px">
-              <label for="cover">Adicionar foto</label>
-              <input type="file" accept="image/*" class="form-control" name="image" onchange="loadFile(event)" required>
-            </div>
-            <br>
-
-            <div class="text-center">
-            <label for="w3review">No que você está pensando?</label>
-            <textarea id="message" name="message" rows="4" cols="55" required ></textarea>
-            <label for="w3review">A que se refere isso?</label>
-            <textarea id="obra" name="obra" rows="1" cols="55"></textarea>
-            <select name="categoria" required>
-              <option value="bota">Filme</option>
-              <option value="fla">Livro</option>
-              <option value="flu">Negociação</option>
-              <option value="vasco">Outros</option>
-              </select>
-
-            </div>
-            {{--
-            <div class="text-center">
-              <label for="relacioned">Sobre o que você está falando?</label>
-            </div>
-            <div class="text-center">
-              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-              <label for="vehicle1"> Livro </label>
-              <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-              <label for="vehicle2"> Música </label>
-              <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-              <label for="vehicle3"> Filme </label>
-              <br>
-              <textarea id="obra" name="obra" rows="1" cols="15" autocomplete="on" style="resize: none" placeholder="&nbsp&nbsp&nbsp Insira o nome"></textarea>
-            </div>
-
-     
-         
-             --}}
-            <!-- Rodapé do modal-->
-              <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Descartar</button>
-              <input type="submit"class="btn btn-success" value="Postar">
-          
-              </div>
-            
-           </form>
-        </div>
-      </div>
-    </div>
-
+      
 
 
         </div>
@@ -148,7 +85,7 @@
 
       <nav id="navbar" class="nav-menu nav2">
         <ul>
-          <li><a href="{{route('feed')}}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Feed</span></a></li>
+          <li><a href="{{route('feed')}}" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Feed</span></a></li>
           <li><a href="{{route('explore')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Explorar</span></a></li>
           <li><a href="{{route('library')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Biblioteca</span></a></li>
           <li><a href="{{route('match')}}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Match</span></a></li>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Book;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -107,5 +109,26 @@ class PostController extends Controller
         $posts = Post::find($id);
         $posts->delete();
       return redirect()->route('perfil.home');
+    }
+
+    public function view($id){
+        $post = Post::find($id);
+        $user = DB::table('users')->where(['id'=>$post->user_id])->get();
+        $obra = DB::table('books')->where(['id'=>$post->obra])->OrderBy('created_at', 'ASC')->get();
+        $comments = DB::table('comments')->join('users', 'users.id', '=', 'comments.user_id')->where(['post_id'=>$id])->OrderBy('comments.created_at', 'ASC')->get();
+        $relacionados = DB::table('books')->where(['id'=>$post->obra])->OrderBy('created_at', 'ASC')->get();
+
+        $likes = DB::table('likes')->where(['post_id'=>$post->obra])->count();
+     
+    
+        return view('templates.postview', ['post'=>$post, 'comments'=>$comments, 'relacionados'=>$relacionados, 'obra'=>$obra,  'user'=>$user, 'likes'=>$likes]);
+        
+    }
+
+    public function FiltroPubli(Request $request){
+        $posts = Post::where('message', 'LIKE', "%{$request->filter}%")
+        ->paginate(); 
+
+        return view('templates.feed', compact('posts'));
     }
 }

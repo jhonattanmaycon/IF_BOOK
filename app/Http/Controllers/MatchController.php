@@ -33,7 +33,7 @@ class MatchController extends Controller
 
       if ($validate ||  $user->id == $auth->id) {
 
-        return route('cardmatch');
+        return " OPS!  <br>  <br> Aconteceu um erro inesperado. <br><br> Por favor, recarregue a página...";
       
       }
 

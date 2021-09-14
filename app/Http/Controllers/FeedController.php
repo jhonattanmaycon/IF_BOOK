@@ -35,10 +35,11 @@ public function feed() {
 	$dados = $user->carregar_feed();
 
 	$dados2 = DB::table('comments')->join('users', 'users.id', '=', 'comments.user_id')->orderBy('comments.created_at', 'DESC')->select('users.name','users.id','text','comments.post_id','comments.created_at')->get();
-	
+	$obras = DB::table('books')->get();
+
 	//return view('templates.feed', ['user'=>$user,'dados'=>$dados,'amigos'=>$amigos]);
 
-	return view('templates.feed', ['user'=>$user,'dados'=>$dados, 'dados2'=>$dados2]);
+	return view('templates.feed', ['user'=>$user,'dados'=>$dados, 'dados2'=>$dados2, 'obras'=>$obras]);
 }
 
 public function like($post_id){

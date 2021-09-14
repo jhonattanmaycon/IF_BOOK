@@ -131,6 +131,16 @@ class LibraryController extends Controller
 		//DB::table('users_books')->where(['book_id' => $book->id, 'user_id'=>Auth::id()])->update(['fav' =>0]);
 		 //alterar a variavel rating para fav
 		 return redirect()->route('library', ['user' => Auth::user()->id]);
-
 	}
+
+	public function book_filter(Request $request){
+		$book = Book::where('title', 'LIKE', "%{$request->filter}%")
+		->orWhere('author', 'LIKE', "%{$request->filter}%")
+		->orWhere('genre', 'LIKE', "%{$request->filter}%")
+		->orWhere('year', 'LIKE', "%{$request->filter}%")
+		->get();
+
+        return view('templates.getbook', compact('book'));
+	}
+
 }

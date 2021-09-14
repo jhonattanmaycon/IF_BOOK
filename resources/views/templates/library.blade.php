@@ -75,7 +75,7 @@
 
                               <td data-title="Product" class="product-name">
                                 <span class="product-thumbnail">
-                                  <a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}"width="200px" alt="cart-product-1"></a>
+                                  <a href="#"><img src="{{ asset('assets/img/portfolio/' . $book->cover) }}"  width="150px" alt="cart-product-1"></a>
                                 </span>
                                   <span class="product-detail">
                                     <a href="{{route('livroview', ['book'=> $book->id]) }}" style="color: rgb(129, 113, 180)"><h5>{{ $book->title }}</h5></a>
@@ -100,7 +100,7 @@
 
                               <td class="product-price">
                                       <p>Sua avaliação: <a href="#">☆☆☆☆☆</a> <br>
-                                        Ver postagens <a href="#">sobre</a>
+                                        Ver postagens <a href="{{ route('explore')}}">sobre</a>
                                       </p>
                               </td>
 
@@ -143,7 +143,7 @@
                         </span>
                       </td>
                       <td data-title="Product" class="product-name">
-                        <span class="product-thumbnail"><a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" width="200px" alt="cart-product-1"></a></span>
+                        <span class="product-thumbnail"><a href="#"><img src="{{ asset('assets/img/portfolio/' . $book->cover) }}" width="150px" alt="cart-product-1"></a></span>
                         <span class="product-detail">
                           <a href="{{route('livroview', ['book'=> $book->id]) }}" style="color: rgb(129, 113, 180)"><h5>{{ $book->title }}</h5></a>
                           <span><strong>Author:</strong> {{ $book->author }}</span>
@@ -204,7 +204,7 @@
 
                       <td data-title="Product" class="product-name">
                         <span class="product-thumbnail">
-                          <a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" width="200px" alt="cart-product-1"></a>
+                          <a href="#"><img src="{{ asset('assets/img/portfolio/' . $book->cover) }}" width="150px" alt="cart-product-1"></a>
                         </span>
                         <span class="product-detail">
                           <a href="{{route('livroview', ['book'=> $book->id]) }}" style="color: rgb(129, 113, 180)">{{ $book->title }}</a>
@@ -267,7 +267,7 @@
                       </td>
                       <td data-title="Product" class="product-name">
                         <span class="product-thumbnail">
-                          <a href="#"><img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" width="200px" alt="cart-product-1"></a> 
+                          <a href="#"><img src="{{ asset('assets/img/portfolio/' . $book->cover) }}" width="150px" alt="cart-product-1"></a> 
                         </span>
 
                         <span class="product-detail">

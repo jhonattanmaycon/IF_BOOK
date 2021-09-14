@@ -49,7 +49,7 @@
 			</div>
 			
 			<div class="breadcrumb">
-					<li><a href="library/{{Auth::user()->id}}">Home</a></li>
+					<li><a href="{{route('library')}}">Voltar</a></li>
 
 			</div>
 		
@@ -68,24 +68,12 @@
 						<section class="search-filters">
 							<div class="filter-box">
 								<h3>Qual livro você deseja encontrar?</h3>
-								<form action="http://libraria.demo.presstigers.com/index.html" method="get">
+								
+								<form action="{{ route('book_filter') }}" method="post">
+									@csrf
 									<div class="col-md-4 col-sm-6">
 										<div class="form-group">
-											<input class="form-control" placeholder="Pesquisar título" id="keywords" name="keywords" type="text">
-										</div>
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<div class="form-group">
-											<div class="form-group">
-												<input class="form-control" placeholder="Pesquisar autor" id="keywords" name="keywords" type="text">
-											</div>
-										</div>
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<div class="form-group">
-											<div class="form-group">
-												<input class="form-control" placeholder="Pesquisar gênero" id="keywords" name="keywords" type="text">
-											</div>
+										<input class="form-control" placeholder="Pesquisar título, autor, gênero ou ano" id="keywords" name="filter" type="text">	
 										</div>
 									</div>
 									<div class="col-md-2 col-sm-6">
@@ -102,45 +90,20 @@
 						<div class="filter-options margin-list">
 							<div class="row">                                            
 								<div class="col-md-3 col-sm-3">
-									<select name="orderby">
-										<option selected="selected">Títulos</option>
-										<option>Sort by popularity</option>
-										<option>Sort by rating</option>
-										<option>Sort by newness</option>
-										<option>Sort by price</option>
-									</select>
+									
 								</div>
 								<div class="col-md-3 col-sm-3">
-									<select name="orderby">
-										<option selected="selected">Categorias</option>
-										<option>Sort by popularity</option>
-										<option>Sort by rating</option>
-										<option>Sort by newness</option>
-										<option>Sort by price</option>
-									</select>
+									
 								</div>
 								<div class="col-md-2 col-sm-3">
-									<select name="orderby">
-										<option selected="selected">Nacionalidades</option>
-										<option>Sort by popularity</option>
-										<option>Sort by rating</option>
-										<option>Sort by newness</option>
-										<option>Sort by price</option>
-									</select>
+									
 								</div>
 								<div class="col-md-2 col-sm-3">
-									<select name="orderby">
-										<option selected="selected">Lançamento</option>
-										<option>Sort by popularity</option>
-										<option>Sort by rating</option>
-										<option>Sort by newness</option>
-										<option>Sort by price</option>
-									</select>
+									
 								</div>
 								<div class="col-md-2 col-sm-12 pull-right">
 									<div class="filter-toggle">
-										<a href="books-media-gird-view-v2.html" class="active"><i class="glyphicon glyphicon-th-large"></i></a>
-										<a href="books-media-list-view.html"><i class="glyphicon glyphicon-th-list"></i></a>
+									
 									</div>
 								</div>
 							</div>
@@ -149,24 +112,24 @@
 							<ul>
 							
 								@if(count($book))
-								@for($i = 0; $i < 1; $i++)
+								@foreach($book as $book)
 								<li>
-									<div class="book-list-icon blue-icon"  @if(Auth::user()->exist($book[$i]->id))  style="visibility: hidden" @endif> <a style="color: white" title="Adicionar aos seus livros" href="{{ route('addbook', ['book'=> $book[$i]->id]) }}"><i class="fas fa-plus-circle fa-2x"></i></a>  </div>
+									<div class="book-list-icon blue-icon"  @if(Auth::user()->exist($book->id))  style="visibility: hidden" @endif> <a style="color: white" title="Adicionar aos seus livros" href="{{ route('addbook', ['book'=> $book->id]) }}"><i class="fas fa-plus-circle fa-2x"></i></a>  </div>
 									<figure>
-										<a href="books-media-detail-v2.html"><img src="{{ asset('assets/images/books-media/layout-3/books-media-layout3-01.jpg') }}" alt="Book"></a>
+										<a href="books-media-detail-v2.html"><img src="{{  asset('assets/img/portfolio/' . $book->cover) }}"   alt="Book"></a>
 										<figcaption>
 											<header>
-												<h4><a href="books-media-detail-v2.html">{{ $book[$i]->title }}</a></h4>
-												<p><strong>Author:</strong>  {{ $book[$i]->author }}</p>
-												<p><strong>Gênero:</strong>  {{ $book[$i]->genre }}</p>
+												<h4><a href="books-media-detail-v2.html">{{ $book->title }}</a></h4>
+												<p><strong>Author:</strong>  {{ $book->author }}</p>
+												<p><strong>Gênero:</strong>  {{ $book->genre }}</p>
 											
 											</header>
 											<span class="product-detail">
 											
 											
 											</span>
-											<p>Aqui será a sinopse! {{ $book[$i]->synopsis }} It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Pellentesque dolor turpis, pulvinar varius.</p>
-											<p><strong>Faixa:</strong>  {{  $book[$i]->age }}</p>
+											<p>{{ $book->synopsis }} </p>
+											<p><strong>Faixa:</strong>  {{  $book->age }}</p>
 											
 
 											<div class="actions">
@@ -207,8 +170,13 @@
 									</figure>                                                
 								</li>
 								
-								@endfor
-									@endif
+								@endforeach
+								@endif
+								{{--{{$book->links()}}--}}
+							</u> 
+						</div>
+
+							
 
 									<nav class="navigation pagination text-center">
 										<h2 class="screen-reader-text">Posts navigation</h2>

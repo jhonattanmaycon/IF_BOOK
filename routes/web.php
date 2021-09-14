@@ -124,6 +124,10 @@ Route::get('/tiny', function() {
 
 Route::resource('posts', PostController::class);
 
+Route::get('/posts/{post}', [PostController::class,'view']) 
+	->name('posts.view');
+
+
 // Comments
 
 
@@ -178,6 +182,20 @@ Route::get('/feed/{post_id}', [FeedController::class, 'like'])
 
 
 Route::resource('livros', LivroController::class);
+
+Route::any('feed/filter', [PostController::class, 'FiltroPubli' ])
+	->name('post_filter');
+
+	Route::any('explore/filter', [ExploreController::class, 'Filtro' ])
+	->name('explore_filter');
+
+
+	///////////////////////////////////
+	// Filtro de pesquisa de livros  //
+	///////////////////////////////////
+
+	Route::any('book/filter', [LibraryController::class, 'book_filter'])
+	->name('book_filter');
 
 
 require __DIR__.'/auth.php';

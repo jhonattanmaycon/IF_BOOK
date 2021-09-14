@@ -1,18 +1,22 @@
 @extends('layouts.ifbook')
 @section('main-content')
 <section class="d-flex flex-column justify-content-center align-items-center">
-	<h1 class="text-white">Explorador</h1>
-	
-		<div class="dropdown">
-		  <a href="#" data-toggle="dropdown"class="dropdown-toggle">Filtros</a>
-			<ul class="dropdown-menu">
-			  <li><a href="">&nbsp;&nbsp;Livros</a></li>
-			  <li><a href="">&nbsp;&nbsp;Filmes</a></li>
-			  <li><a href="">&nbsp;&nbsp;Resenhas</a></li>
-			  <li><a href="#">&nbsp;&nbsp;Negociação</a></li>
-			</ul>
-		</div>
+	<div class="row text-center">
+	<form action="{{ route('explore_filter') }}" method="post" class="form form-inline">	
+		@csrf
+		<input type="text" name="filter" placeholder="Filtrar texto" class="form-control">
+		<select class="form-select form-select-sm" size="1" name="filterCategoria">
 
+			<option value="zero">Escolha</option>
+			<option value="livro">Livro</option>
+			<option value="filme">Filme</option>
+			<option value="resenhas">Resenhas</option>
+			<option value="negociacao">Negociação</option>
+
+		</select>
+		<button type="submit" class="btn btn-info text-center">Pesquisar</button> 
+	</form>
+</div>
 
     
 		<div class="col-md-8 mb-3 mt-3" >
@@ -31,9 +35,9 @@
 						</span>
 						<br>
 						<div class="gallery">
-							<div class="gallery-item" tabindex="0" data-toggle="modal" data-target="#meuModal3">
+							<div class="gallery-item" tabindex="0" data-toggle="modal" data-target="#meuModal3" onclick="setaDados2Modal('{{$postagem->id}}')">
 							<img src="{{  asset('storage/imgposts/' . $postagem->image) }}"  width="50%" alt="cart-product-1">
-							<a href="#"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
+							<a href="{{route('posts.view', ['post'=>$postagem->id])}}" target="_blank"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
 							{{--<a href="#"> <i class="bi bi-heart-fill"> {{$postagem->contlike($postagem->id)}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->contcomment($postagem->id)}} </i> </a>--}}
 							</div>
 						</div>
@@ -44,6 +48,9 @@
 					<span class="product-detail">
 						
 						<span><strong>"{{ $postagem->message }}"</strong></span>  <br>  <br>
+
+						
+					
 
 						{{-- 
 						@unless($verification->post_id == $postagem->id)
@@ -56,16 +63,16 @@
 
 
 						
-
+						{{-- @foreach ($curtiu as $curtiu)
 						<a class="btn btn-success" href="{{route('like', ['post_id'=>$postagem->id])}}">
-							@if ($curtiu)
+							 @if ($curtiu == $postagem->id)
 								Descurtir
 							@else 
 								Curtir
 							@endif
 
-							
-									
+						@endforeach 
+									 --}}
 						</a> 	
 							&nbsp
 						<button data-toggle="modal" data-target="#meuModal2" class="btn btn-secondary" onclick="setaDadosModal('{{$postagem->id}}')">
@@ -77,6 +84,13 @@
 						<script>
 							function setaDadosModal(valor) {
 								document.getElementById('campo').value = valor;
+							}
+						</script>
+
+						<script>
+							function setaDados2Modal(valor) {
+								var campo2 = valor;
+								$('h4 span').html(campo2);
 							}
 						</script>
 
@@ -126,7 +140,7 @@
               <input type="file" accept="image/*" class="form-control" name="image" onchange="loadFile(event)">
             </div>
 
-			<input style="visibility: " type='text' readonly  id="campo" name="post" value="campo">
+			<input style="visibility: hidden" type='text' readonly  id="campo" name="post" value="campo">
 
             <div class="text-center">
             <label for="w3review"></label>
@@ -151,57 +165,8 @@
 	</div>
 
 	
-	<div id="meuModal3" class="modal fade" role="dialog">
-		<div class="modal-dialog">
 	
-		  <!-- Conteúdo do modal-->
-		  <div class="modal-content">
-	
-			<!-- Cabeçalho do modal -->
-			<div class="modal-header">
-				<h4 class="modal-title">Comentários da publicação</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			  </div>
-	
-			<!-- Corpo do modal -->
-			<div>
-				<div class="card p-3 mb-2 ">
-				  <div class="card-body " >
-				  <tbody>
-					   @foreach ($dados as $postagem) 
-					  
-					  <div class="text-center ">
-					  <tr class="cart_item">
-	  
-					  <td data-title="Product" class="product-name">
-						  <span class="inline">
-							 <a href="#"><h5> Comentário de  <a href="{{route('perfil.explore', ['user'=>$postagem->id])}}">{{ $postagem->name}}</a></h5></a><i><h6>{{ $postagem->created_at}}</h6></i></a>
-							  </span>
-							  <div class="gallery">
-								  <div class="gallery-item" tabindex="0" width="1%" data-toggle="modal" data-target="#meuModal3">
-								  <img src="{{ asset('storage/imgposts/' . $postagem->image) }}" width="80%" alt="cart-product-1">
-								  <a href="#"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
-								  </div>
-							  </div>
-						  </span>
-	  
-						  <span class="product-detail">
-							  <span><strong>"{{ $postagem->message }}"</strong></span> <br>
-						  </span>
-					  </td>
-					  <hr>  <br> 
-					  </tr>
-	  
-						  
-				  </div>
-					 @endforeach 
-	  
-			</tbody>
-		  </div>
-		  </div>
-		  </div>
-		  </div>
-	  </div>
+			  
 			  
 			</div>  
 		  </div>

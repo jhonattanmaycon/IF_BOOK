@@ -24,8 +24,11 @@ class LivroController extends Controller
     public function livro($id)
     {
         $livro = Book::find($id);
+        $dados = DB::table('posts')->join('users', 'users.id', '=', 'posts.user_id')->where(['obra'=>$livro->id])->orderBy('posts.created_at', 'DESC')->select('posts.id','message','likes', 'obra','posts.created_at','posts.views', 'users.name', 'posts.image')->get();
         $autor = DB::table('books')->where(['author'=>$livro->author])->OrderBy('year', 'ASC')->get();
-        return view('templates.bookview', ['book'=>$livro,'autor'=>$autor]);
+
+        return view('templates.bookview', ['book'=>$livro,'autor'=>$autor, 'dados'=>$dados]);
+
     }
 
     /**

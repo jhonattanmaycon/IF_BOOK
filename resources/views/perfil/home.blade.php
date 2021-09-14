@@ -188,8 +188,7 @@
           {{-- decoding="auto" style="object-fit: cover;" sizes="293px" --}}
 
          <img  src="{{asset ('storage/imgposts/' . $post->image)}}" class="gallery-image" alt="">
-         <a href="#"> <i class="bi bi-heart-fill"> {{$post->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$post->views}} </i> </a>
-
+         <a href="{{route('posts.view', ['post'=>$post->id])}}" target="_blank"> <i class="bi bi-heart-fill"> {{$post->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$post->views}} </i> </a>
       
 
          {{-- 

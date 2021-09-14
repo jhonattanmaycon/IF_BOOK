@@ -41,20 +41,21 @@
                                     <div class="col-xs-12 col-sm-5 col-md-3">
                                         <div class="post-thumbnail">
                                             <div class="book-list-icon blue-icon"></div>
-                                            <img src="{{ asset('assets/img/portfolio/portfolio-1.jpg') }}" width="100%" height="700px" alt="cart-product-1">
+                                            <img src="{{ asset('assets/img/portfolio/'.$book->cover) }}" width="100%" alt="cart-product-1">
                                             <br> <br>
-                                            <p style="color: white"><strong style="color: white">&nbsp;&nbsp;Sinopse:</strong> {{$book->synopsis}}</p>
+                    
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-7 col-md-6">
                                         <div class="post-center-content">
-                                            <h2>{{$book->title}}</h2>
+                                            <h2>{{$book->cover}}</h2>
                                             <br>
                                             <p><strong>Autor:</strong> {{$book->author}}</p>
                                             <p><strong>ISBN:</strong> </p>
                                             <p><strong>Categoria:</strong> {{$book->genre}}</p>
                                             <p><strong>Classificação:</strong> {{$book->age}} anos</p>
-                                            <p><strong>Tópicos: </strong> </p>
+                                            <br><br>
+                                            <p><strong >Sinopse:</strong> {{$book->synopsis}}</p>
                                             <br><br><br><br><br>
                                             <div class="actions">
                                                 <ul>
@@ -100,9 +101,9 @@
                                             <p style="color: white"><strong style="color: white">Curtidas: </strong> </p>
                                             <p style="color: white"><strong style="color: white">Resenhas: </strong> </p>
                                             <a href="#." class="available-location">Availability by Location <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                                            <a href="#." class="btn btn-dark-gray">Adicionar aos interesses</a> 
+                                            <a href="{{ route('addbook', ['book'=> $book->id]) }}" class="btn btn-dark-gray">Adicionar a sua livraria</a> 
                                             <a href="#." class="btn btn-dark-gray">Saber mais</a> 
-                                            <a href="#." class="btn btn-dark-gray">Buscar similares</a>
+                                            <a href="{{ route('getbook') }}" class="btn btn-dark-gray">Buscar similares</a>
                                             <a href="#." class="btn btn-dark-gray">Curtir</a>
                                         </div>
                                     </div>
@@ -115,7 +116,7 @@
                                 <div class="table-tabs" id="responsiveTabs">
                                     <ul class="nav nav-tabs">
                                         <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Relacionados ({{count($autor)}}): </a></li>
-                                        <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Resenhas ()</a></li>
+                                        <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Resenhas ({{count($dados)}})</a></li>
                                         <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Negociações ()</a></li>
                                 
                                     </ul>
@@ -143,10 +144,43 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div id="sectionB" class="tab-pane fade in">
-                                            <h5>Lorem Ipsum Dolor</h5>
-                                            <p>esse é um</p>
-                                        </div>
+                                        <div id="sectionB" class="tab-pane fade in active">
+                                            @foreach ($dados as $comments)
+                                            <tr>
+                                                <br>
+                                                <h2 style="color: rgb(196, 192, 192)"><td><a href="{{route('posts.view', ['post'=>$comments->id])}}">Postagem </a> de {{$comments->name}}</td></h2>
+                                                <div class="text-center ">
+                                                    <tr class="cart_item">
+                                    
+                                                    <td data-title="Product" class="product-name">
+                                                        <span class="inline">
+                                                          <h5>Feito em {{ $comments->created_at}}</a></h5><i></i>
+                                                   {{--		  </span>
+                                                            <div class="gallery">
+                                                                <div class="gallery-item" tabindex="0" width="1%">
+                                                               <img src="{{ asset('storage/imgposts/' . $postagem->image) }}" width="80%" alt="cart-product-1">
+                                                                <a href="#"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                    --}}
+                              
+                                                        <span class="product-detail">
+                                                            <a href="{{route('posts.view', ['post'=>$comments->id])}}"><img src="{{  asset('storage/imgposts/' . $comments->image) }}"  width="10%" alt="cart-product-1"></a><br>
+                                                            <h2><strong>"{{ $comments->message }}"</strong></h2> <br><br><br>
+                                                        </span>
+                                                    </td>
+                                                    <hr>  <br> 
+                                                    </tr>
+                                    
+                                                        
+                                                </div> 
+                                                                                                            
+                                            </tr>
+                                           
+                                            @endforeach
+                                    
+                                </div>
                                         <div id="sectionC" class="tab-pane fade in">
                                             <h5>Lorem Ipsum Dolor</h5>
                                             <p>dois</p>
