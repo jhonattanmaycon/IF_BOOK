@@ -124,6 +124,8 @@ Route::resource('posts', PostController::class);
 Route::get('/admin',  [AdminController::class,'index'])->name('admin');
 
 Route::get('/admin/show_users', [AdminController::class,'show_users'])->name('admin_showUsers');
+Route::get('/admin/show_books', [AdminController::class,'show_books'])->name('admin_showBooks');
+Route::get('/admin/show_posts', [AdminController::class,'show_posts'])->name('admin_showPosts');
 
 // Rota para o controle do match
 Route::get('/match',[MatchController::class,'match'])
