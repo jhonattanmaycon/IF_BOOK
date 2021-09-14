@@ -25,9 +25,10 @@ class LivroController extends Controller
     {
         $livro = Book::find($id);
         $dados = DB::table('posts')->join('users', 'users.id', '=', 'posts.user_id')->where(['obra'=>$livro->id])->orderBy('posts.created_at', 'DESC')->select('posts.id','message','likes', 'obra','posts.created_at','posts.views', 'users.name', 'posts.image')->get();
+        $dados2 = DB::table('posts')->join('users', 'users.id', '=', 'posts.user_id')->where(['obra'=>$livro->id, 'categoria'=>"Negociação"])->orderBy('posts.created_at', 'DESC')->select('posts.id','message','likes', 'obra','posts.created_at','posts.views', 'users.name', 'posts.image')->get();
         $autor = DB::table('books')->where(['author'=>$livro->author])->OrderBy('year', 'ASC')->get();
-
-        return view('templates.bookview', ['book'=>$livro,'autor'=>$autor, 'dados'=>$dados]);
+        $leitores = DB::table('users_books')->where(['book_id'=>$livro->id])->count();
+        return view('templates.bookview', ['book'=>$livro,'autor'=>$autor, 'dados'=>$dados, 'dados2'=>$dados2, 'leitores'=>$leitores]);
 
     }
 

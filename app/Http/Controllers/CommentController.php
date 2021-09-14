@@ -59,8 +59,7 @@ class CommentController extends Controller
         $comment->save();
 
 
-
-       return redirect()->route('perfil.home');
+        return redirect()->back();
     }
 
     /**

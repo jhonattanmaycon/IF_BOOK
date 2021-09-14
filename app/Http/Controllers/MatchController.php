@@ -27,16 +27,9 @@ class MatchController extends Controller
 
         $user = DB::table('users')->where(['hobbie'=>$auth->hobbie])->orWhere(['music'=>$auth->music])->orWhere(['onebook'=>$auth->onebook])->orWhere(['twobook'=>$auth->twobook])->orWhere(['threebook'=>$auth->threebook])->orWhere(['onemovie'=>$auth->onemovie])->orWhere(['twomovie'=>$auth->twomovie])->orWhere(['threemovie'=>$auth->threemovie])->orWhere(['onemusic'=>$auth->onemusic])->orWhere(['twomusic'=>$auth->twomusic])->orWhere(['threemusic'=>$auth->threemusic])->inRandomOrder()->limit(1)->first();
         $seguidores = DB::table('user_follow_user')->where(['user_2'=> $user->id])->count();
+        $validate = DB::table('matchs')->where(['user_1' =>$auth->id, 'user_2'=>$user->id])->count();
 
-        
-      $validate = DB::table('matchs')->where(['user_1' =>$auth->id, 'user_2'=>$user->id])->count();
-
-      if ($validate ||  $user->id == $auth->id) {
-
-        return " OPS!  <br>  <br> Aconteceu um erro inesperado. <br><br> Por favor, recarregue a página...";
-      
-      }
-
+      if ($validate ||  $user->id != $auth->id) {
 
       if($user->music != null || $user->hobbie != null ){
       
@@ -70,7 +63,17 @@ class MatchController extends Controller
         }
         
       }
-       
+
+      else{
+        $erro = "Usuários não foram encontrados";
+        return view('templates.cardmatcherro', ['erro'=>$erro]);
+      }
+
+    } 
+    
+    else {
+      return redirect()->route('cardmatch');
+    }
 
        
    }

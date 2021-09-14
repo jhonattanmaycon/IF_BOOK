@@ -118,9 +118,8 @@ class PostController extends Controller
         $comments = DB::table('comments')->join('users', 'users.id', '=', 'comments.user_id')->where(['post_id'=>$id])->OrderBy('comments.created_at', 'ASC')->get();
         $relacionados = DB::table('books')->where(['id'=>$post->obra])->OrderBy('created_at', 'ASC')->get();
 
-        $likes = DB::table('likes')->where(['post_id'=>$post->obra])->count();
-     
-    
+        $likes = DB::table('likes')->where(['post_id'=>$id])->count();
+
         return view('templates.postview', ['post'=>$post, 'comments'=>$comments, 'relacionados'=>$relacionados, 'obra'=>$obra,  'user'=>$user, 'likes'=>$likes]);
         
     }

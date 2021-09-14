@@ -715,38 +715,32 @@
 <div class="container">
 	<div class="row">
         <div class="col-md-4">  
-            <a href="{{ route('nolove', ['user'=> $user->id]) }}"> <div class="profile-card-2"><img src="{{asset('assets\img\feliztriste.jpg')}}" class="img img-responsive">
-                <div class="profile-name " style="color: rgb(54, 50, 50)">Próximo</div>
+            <a onClick="window.location.reload()"> <div class="profile-card-2"><img src="{{asset('assets\img\erro1.png')}}" class="img img-responsive">
+     
             </a>
             </div>
         </div>
 
 <div class="col-md-4">
-    {{-- @foreach ($user as $user) --}}
-    <h4 class="text-center"><strong>"{{$user->bio}}"</strong></h4>
-    @if($user->photo == null)
-    <div class="profile-card-6"><img src="{{asset('assets\img\semfoto.png')}}" class="img img-responsive">
-    @endif
-    @if($user->photo)
-    <div class="profile-card-6"><img src="{{ asset('storage/imgphotos/' . $user->photo) }}" class="img img-responsive">
-    @endif
+   
+    <h4 class="text-center"><strong>"Ocorreu algo inesperado"</strong></h4>
+   
+    <a onClick="window.location.reload()"><div class="profile-card-6"><img src="{{asset('assets\img\recarregar2.png')}}" class="img img-responsive"></a>
 
-        <div class="profile-name" style="color: white; text-shadow: black 0.1em 0.1em 0.2em">{{$user->name}}</div>
-        <div class="profile-position" style="color: white; text-shadow: black 0.1em 0.1em 0.2em">@ {{$user->realname}}</div>
+
+        <div class="profile-name" style="color: white; text-shadow: black 0.1em 0.1em 0.2em"></div>
+        <div class="profile-position" style="color: white; text-shadow: black 0.1em 0.1em 0.2em"></div>
         <div class="profile-overview">
             <div class="profile-overview">
                 <div class="row text-center">
                     <div class="col-xs-4">
-                        <h3>1</h3>
-                        <p>Postagens</p>
+                       
                     </div>
                     <div class="col-xs-4">
-                        <h3>{{$seguidores}}</h3>
-                        <p>Seguidores</p>
+                      
                     </div>
                     <div class="col-xs-4">
-                        <h3>8</h3>
-                        <p>Livraria</p>
+                      
                     </div>
                 </div>
             </div>
@@ -755,8 +749,8 @@
    {{--  @endforeach--}}
 </div>
 		<div class="col-md-4">
-        <a href="{{ route('love', ['user'=> $user->id]) }}"><div id="match"><img src="{{asset('assets\img\feliztriste.jpg')}}" class="img img-responsive">
-                <div  class="profile-name " style="color: rgb(54, 50, 50)">Gostei</div>
+        <a  onClick="window.location.reload()"><div id="match"><img src="{{asset('assets\img\erro2.png')}}" class="img img-responsive">
+             
             </div>
         </a>
 </div>
@@ -765,9 +759,12 @@
 
 
 <div class="container" style="background-color: rgba(0, 0, 0, 0.493); text-align: center;">
-    <h2>O usuário também gosta de: <h1>
-        <h4 style="color: rgba(212, 212, 18, 0.801)">{{$interesse}}<h1>
-            <br>   
+    <br>
+    <h2>Recarregue a página para continuar<h1>
+        <hr>
+        <h4 style="color: rgba(212, 212, 18, 0.801)">{{$erro}}<h1>
+        <br>
+        
 </div>
 <!-- partial -->
 

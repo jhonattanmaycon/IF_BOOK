@@ -36,7 +36,7 @@
 						<br>
 						<div class="gallery">
 							<div class="gallery-item" tabindex="0" data-toggle="modal" data-target="#meuModal3" onclick="setaDados2Modal('{{$postagem->id}}')">
-							<img src="{{  asset('storage/imgposts/' . $postagem->image) }}"  width="50%" alt="cart-product-1">
+							<img src="{{  asset('storage/imgposts/' . $postagem->image) }}"  width="25%" alt="cart-product-1" >
 							<a href="{{route('posts.view', ['post'=>$postagem->id])}}" target="_blank"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
 							{{--<a href="#"> <i class="bi bi-heart-fill"> {{$postagem->contlike($postagem->id)}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->contcomment($postagem->id)}} </i> </a>--}}
 							</div>

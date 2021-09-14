@@ -58,10 +58,10 @@
           </a>
         </h1>
         <div class="social-links mt-3 text-center">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="{{route('getbook')}}" title="biblioteca"><i class="bx bxl-bi bi-book"></i></a>
           <a href="#" title="Criar um post"  class="facebook"  data-toggle="modal" data-target="#meuModal"><i class="bx bi-plus-circle"></i></a>
 
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="{{route('cardmatch')}}" title="match" class="bi bi-emoji-heart-eyes"><i class="bx bxl-bi bi-emoji-heart-eyes"></i></a>
       
 
 

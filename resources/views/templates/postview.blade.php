@@ -38,17 +38,21 @@
                             </div>
                             <div class="booksmedia-detail-box">
                                 <div class="detailed-box" style="background-color: rgba(7, 17, 53, 0.253);">
-                                    <div class="col-xs-12 col-sm-5 col-md-6">
-                                        <div class="post-thumbnail">
-                                            <div class="book-list-icon blue-icon"><img src="{{  asset('storage/imgposts/' . $post->photo) }}"  width="50%" alt="cart-product-1"></div>
+                                    <div class="col-xs-12 col-sm-5 col-md-4">
+                                        <div class="post-thumbnail" >
+                                            <div class="book-list-icon blue-icon"><img src="{{  asset('storage/imgposts/' . $post->photo) }}"  width="45%" alt="cart-product-1"></div>
 
-                                            <img src="{{  asset('storage/imgposts/' . $post->image) }}"  width="100%" alt="cart-product-1">
+                                            <img src="{{  asset('storage/imgposts/' . $post->image) }}"  width="90%" class="center-block" alt="cart-product-1">
                                             <br> <br>
                                            
                                         </div>
-                                         <p style="color: white"><strong style="color: white">"{{$post->message}}"</strong></p>
+                                         
+                                        <p style="color: white"><strong style="color: white">Curtidas: {{ $likes}} </strong> </p>
+                                        <p style="color: white"><strong style="color: white">Comentário: {{count($comments)}} </strong> </p>
+                                        <br>
+                                       
                                     </div>
-                                    <div class="col-xs-12 col-sm-7 col-md-4">
+                                    <div class="col-xs-12 col-sm-7 col-md-6">
                                         <div class="post-center-content">
                                             @foreach ($user as $user)
                                             <h2>Postagem de <a href="{{route('perfil.explore', ['user'=>$user->id])}}">{{$user->name}}</a></h2>
@@ -58,14 +62,15 @@
                                             <p><strong>Categoria:</strong> {{$post->categoria}}</p>
                                             @foreach ($obra as $obra)
                                             <p><strong>Obra: </strong><a href="{{route('livroview', ['book'=>$obra->id])}}">{{$obra->title}}</a></p>
+ 
+                                            <div class="center-content">
+                                                <a href="{{route('livroview', ['book'=>$obra->id])}}"><img src="{{ asset('assets/img/portfolio/' . $obra->cover) }}"  width="40%" alt="cart-product-1"></a>
+                                            </div>
+                                            @endforeach
                                             <br>
-                                        <div class="center-content">
-                                            <a href="{{route('livroview', ['book'=>$obra->id])}}"><img src="{{ asset('assets/img/portfolio/' . $obra->cover) }}"  width="40%" alt="cart-product-1"></a>
-                                        </div>
-                                        @endforeach
-                                            <br><br><br><br><br><br><br><br><br><br>
-                                            <p><strong>Curtidas: {{ $likes}} </strong> </p>
-                                            <p><strong>Comentário: {{count($comments)}} </strong> </p>
+                                            <p><strong>"{{$post->message}}"</strong> </p>
+                                        
+                                          
                                             <div class="actions">
                                                 
                                             </div>
@@ -73,10 +78,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-2 ">
+                                    <div class="col-xs-12 col-sm-12 col-md-1">
                                         <div class="post-right-content">
                                             <br><br><br><br><br><br><br>
                                             <a href="{{route('like', ['post_id'=>$post->id])}}" class="btn btn-dark-gray">Curtir</a>
+                                            <a  data-toggle="modal" data-target="#meuModal2" class="btn btn-dark-gray" onclick="setaDadosModal('{{$post->id}}')">Comentar</a>
                                         </div>
                                     </div>
                             
@@ -137,6 +143,54 @@
                 </main>
             </div>
         </div>
+
+
+        <div id="meuModal2" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+        
+              <!-- Conteúdo do modal-->
+              <div class="modal-content">
+        
+                <!-- Cabeçalho do modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Fazer comentário</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+        
+                <!-- Corpo do modal -->
+                <form action="{{route('comments.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+        
+                    <div class="text-center">
+                      <img id="output" width="250px">
+                      <label for="cover">Adicionar foto</label>
+                      <input type="file" accept="image/*" class="form-control" name="image" onchange="loadFile(event)">
+                    </div>
+        
+                    <input style="visibility: hidden" type='text' readonly  id="campo" name="post" value="campo">
+        
+                    <div class="text-center">
+                    <label for="w3review"></label>
+                    <textarea id="message" name="message" rows="4" cols="55"  minlength="1" maxlength="150" placeholder="Digite aqui o seu comentário..." required></textarea>
+                    </div>
+        
+        
+                    
+        
+                   
+                    <!-- Rodapé do modal-->
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                      <input type="submit"class="btn btn-success" value="Enviar">
+                  
+                      </div>
+                    
+                   </form>
+                  
+                </div>  
+              </div>
+            </div>
+            
         <!-- End: Products Section -->
         
   
@@ -148,7 +202,11 @@
         <!-- Start: Footer -->
       
         <!-- End: Footer -->
-        
+        <script>
+            function setaDadosModal(valor) {
+                document.getElementById('campo').value = valor;
+            }
+        </script>
   <!-- jQuery Latest Version 1.x -->
   <script type="text/javascript" src="{{ asset('assets/jslibrary/jquery-1.12.4.min.js') }}"></script>
 

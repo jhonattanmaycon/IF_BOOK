@@ -97,9 +97,8 @@
                                         <div class="post-right-content">
                                             <h4 style="color: white">Avaliações</h4>
                                             <p style="color: white"><strong style="color: white">Nota Média:</strong> ☆☆☆☆☆</p>
-                                            <p style="color: white"><strong style="color: white">Total de leitores: </strong>  </p>
-                                            <p style="color: white"><strong style="color: white">Curtidas: </strong> </p>
-                                            <p style="color: white"><strong style="color: white">Resenhas: </strong> </p>
+                                            <p style="color: white"><strong style="color: white">Total de leitores: {{$leitores}} </strong>  </p>
+                                            <p style="color: white"><strong style="color: white">Resenhas: {{count($dados)}} </strong> </p>
                                             <a href="#." class="available-location">Availability by Location <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                                             <a href="{{ route('addbook', ['book'=> $book->id]) }}" class="btn btn-dark-gray">Adicionar a sua livraria</a> 
                                             <a href="#." class="btn btn-dark-gray">Saber mais</a> 
@@ -117,7 +116,7 @@
                                     <ul class="nav nav-tabs">
                                         <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Relacionados ({{count($autor)}}): </a></li>
                                         <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Resenhas ({{count($dados)}})</a></li>
-                                        <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Negociações ()</a></li>
+                                        <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Negociações ({{count($dados2)}})</a></li>
                                 
                                     </ul>
                                     <div class="tab-content">
@@ -182,21 +181,45 @@
                                     
                                 </div>
                                         <div id="sectionC" class="tab-pane fade in">
-                                            <h5>Lorem Ipsum Dolor</h5>
-                                            <p>dois</p>
+                                            @foreach ($dados2 as $comments)
+                                            <tr>
+                                                <br>
+                                                <h2 style="color: rgb(196, 192, 192)"><td><a href="{{route('posts.view', ['post'=>$comments->id])}}">Postagem </a> de {{$comments->name}}</td></h2>
+                                                <div class="text-center ">
+                                                    <tr class="cart_item">
+                                    
+                                                    <td data-title="Product" class="product-name">
+                                                        <span class="inline">
+                                                          <h5>Feito em {{ $comments->created_at}}</a></h5><i></i>
+                                                   {{--		  </span>
+                                                            <div class="gallery">
+                                                                <div class="gallery-item" tabindex="0" width="1%">
+                                                               <img src="{{ asset('storage/imgposts/' . $postagem->image) }}" width="80%" alt="cart-product-1">
+                                                                <a href="#"> <i class="bi bi-heart-fill"> {{$postagem->likes}} &nbsp;&nbsp;&nbsp; </i> <i class="bi bi-chat-fill"> {{$postagem->views}} </i> </a>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                    --}}
+                              
+                                                        <span class="product-detail">
+                                                            <a href="{{route('posts.view', ['post'=>$comments->id])}}"><img src="{{  asset('storage/imgposts/' . $comments->image) }}"  width="10%" alt="cart-product-1"></a><br>
+                                                            <h2><strong>"{{ $comments->message }}"</strong></h2> <br><br><br>
+                                                        </span>
+                                                    </td>
+                                                    <hr>  <br> 
+                                                    </tr>
+                                    
+                                                        
+                                                </div> 
+                                                                                                            
+                                            </tr>
+                                           
+                                            @endforeach
+
                                         </div>
-                                        <div id="sectionD" class="tab-pane fade in">
-                                            <h5>Lorem Ipsum Dolor</h5>
-                                            <p>tres</p>
-                                        </div>                                                    
-                                        <div id="sectionE" class="tab-pane fade in">
-                                            <h5>Lorem Ipsum Dolor</h5>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
-                                        </div>                                                    
-                                        <div id="sectionF" class="tab-pane fade in">
-                                            <h5>Lorem Ipsum Dolor</h5>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
-                                        </div>
+                                  
+                                        
+
                                     </div>
                                 </div>
                             </div>
