@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Usuários</title>
+	<title>Posts</title>
 </head>
 <body>
-	<h3>Usuários cadastrados:</h3>
+	<h3>Posts cadastrados:</h3>
 
-	@foreach($showUsers as $showUser)
+	@foreach($showPosts as $showPost)
 
-	{{ $showUser->name }}
+		{{ $showPost->message }} <br>
 
 	@endforeach
 

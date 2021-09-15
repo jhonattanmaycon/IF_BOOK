@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-7 col-md-6">
                                         <div class="post-center-content">
-                                            <h2>{{$book->cover}}</h2>
+                                            <h2>{{$book->title}}</h2>
                                             <br>
                                             <p><strong>Autor:</strong> {{$book->author}}</p>
                                             <p><strong>ISBN:</strong> </p>
