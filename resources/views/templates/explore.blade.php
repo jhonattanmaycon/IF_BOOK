@@ -31,7 +31,7 @@
 
 				<td data-title="Product" class="product-name">
 					<span class="inline">
-						<a href="#"><h5> Postagem de  <a href="{{route('perfil.explore', ['user'=>$postagem->id])}}">{{ $postagem->name}}</a></h5></a><i><h6>{{ $postagem->created_at}}</h6></i></a>
+						<a href="{{route('posts.view', ['post'=>$postagem->id])}}"><h5> Postagem de {{ $postagem->name}}</h5></a><i><h6>{{ $postagem->created_at}}</h6></i></a>
 						</span>
 						<br>
 						<div class="gallery">

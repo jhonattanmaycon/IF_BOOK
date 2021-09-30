@@ -3,10 +3,12 @@
     
 <head>        
 
-        <!-- Favicon -->
-  <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
-
-  <!-- Fonts -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets\img\favicon-32x32.png')}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets\img\favicon-16x16.png')}}">
+  <link rel="manifest" href="{{asset('assets\img\site.webmanifest')}}">
+  <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
+  
   <link
   href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i"
   rel="stylesheet" />

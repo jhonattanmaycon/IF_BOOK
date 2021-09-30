@@ -29,7 +29,7 @@ class MatchController extends Controller
         $seguidores = DB::table('user_follow_user')->where(['user_2'=> $user->id])->count();
         $validate = DB::table('matchs')->where(['user_1' =>$auth->id, 'user_2'=>$user->id])->count();
 
-      if ($validate ||  $user->id != $auth->id) {
+      if ($validate == 0 &&  $user->id != $auth->id) {
 
       if($user->music != null || $user->hobbie != null ){
       
@@ -72,7 +72,8 @@ class MatchController extends Controller
     } 
     
     else {
-      return redirect()->route('cardmatch');
+      $erro = "Usuários não foram encontrados";
+      return view('templates.cardmatcherro', ['erro'=>$erro]);
     }
 
        

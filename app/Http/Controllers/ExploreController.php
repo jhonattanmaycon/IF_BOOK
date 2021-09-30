@@ -79,10 +79,10 @@ class ExploreController extends Controller
 
     public function Filtro(Request $request){
       if($request->filterCategoria == "zero"){
-        $dados = Post::where('message', 'LIKE', "%{$request->filter}%")->get();
+        $dados = Post::where('message', 'LIKE', "%{$request->filter}%")->join('users', 'users.id', '=', 'posts.user_id')->orderBy('posts.created_at', 'DESC')->select('posts.id','message','likes', 'obra','posts.created_at','posts.views', 'users.name', 'posts.image')->get();
         return view('templates.explore', compact('dados'));
       }else{
-        $dados = Post::where('message', 'LIKE', "%{$request->filter}%")->where('categoria', 'LIKE', "%{$request->filterCategoria}%")->get();
+        $dados = Post::where('message', 'LIKE', "%{$request->filter}%")->where('categoria', 'LIKE', "%{$request->filterCategoria}%")->join('users', 'users.id', '=', 'posts.user_id')->orderBy('posts.created_at', 'DESC')->select('posts.id','message','likes', 'obra','posts.created_at','posts.views', 'users.name', 'posts.image')->get();
         return view('templates.explore', compact('dados'));
       }
     }
